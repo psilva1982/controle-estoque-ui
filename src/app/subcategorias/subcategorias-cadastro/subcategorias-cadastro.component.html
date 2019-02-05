@@ -29,13 +29,13 @@
     <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
 
       <div class="ui-g-5 ui-sm-12 ui-fluid">
-        <label>Subcategoria</label>
+        <label>Nome</label>
         <input pInputText type="text" name="nome" [(ngModel)]="subcategoria.nome" #nome="ngModel" required minlength="5">
 
-        <app-message [control]="nome" error="required" texto="Informe uma descrição">
+        <app-message [control]="nome" error="required" texto="Informe um nome para a subcategoria">
         </app-message>
 
-        <app-message [control]="nome" error="minlength" texto="A descrição deve conter no mínimo 5 caracteres">
+        <app-message [control]="nome" error="minlength" texto="O nome deve conter no mínimo 5 caracteres">
         </app-message>
 
       </div>

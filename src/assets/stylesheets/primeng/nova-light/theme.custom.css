@@ -41,9 +41,9 @@ body .ui-widget {
   text-decoration: none;
 }
 body .ui-corner-all {
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
 }
 body .ui-corner-top {
   -moz-border-radius-topleft: 3px;
@@ -1146,6 +1146,7 @@ body .ui-button {
   color: #ffffff;
   background-color: #1e94d2;
   border: 1px solid #1c8bc5;
+  height: 32px;
   font-size: 13px;
   -moz-transition: background-color 0.2s, box-shadow 0.2s;
   -o-transition: background-color 0.2s, box-shadow 0.2s;

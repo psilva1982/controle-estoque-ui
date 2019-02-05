@@ -33,7 +33,7 @@
     <div class="row">
     <div class="ui-g-7 ui-sm-12 ui-fluid">
       <label>Pesquisar</label>
-      <input pInputText type="text" icon="fa fa-search" name="nome" placeholder="Descrição ou o código" [(ngModel)]="filtro.valor">
+      <input pInputText type="text" icon="fa fa-search" name="nome" placeholder="Código ou descrição" [(ngModel)]="filtro.valor">
     </div>
   </div>
 
@@ -59,12 +59,17 @@
 
     <div class="ui-g-12">
       <button pButton type="submit" label="Pesquisar" icon="fa fa-search"></button>
+      <a routerLink="/subcategorias/nova" style="margin: 20px">
+        <i class="fa  fa-file-pdf-o "></i> <span class="hidden-xs  hidden-sm"> Exportar como PDF</span>
+      </a>
+      <a routerLink="/subcategorias/nova" >
+        <i class="fa  fa-file-excel-o"></i> <span class="hidden-xs  hidden-sm"> Exportar como Panilha</span>
+      </a>
     </div>
 
   </form>
 
-
-  <div class="ui-g-12">
+  <div class="ui-g-12" style="margin-top: 30px">
 
     <p-table #tabela [value]="produtos" [responsive]="true" [loading]="carregando" [paginator]="true" [rows]="filtro.itensPorPagina"
       [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)">
@@ -91,10 +96,10 @@
           <td [ngClass]="'col-medida'">{{produto.medida.descricao}}</td>
           <td [ngClass]="'col-local'">{{produto.local.descricao}}</td>
           <td [ngClass]="'col-estoque'">{{produto.estoque}}  </td>
-          <td [ngClass]="'col-status'"> 
-            <span class="label label-success" *ngIf="produto.estoque >= produto.minimo">NORMAL</span> 
-            <span class="label label-warning" *ngIf="produto.estoque < produto.minimo && produto.estoque > 0">BAIXO</span> 
-            <span class="label label-danger" *ngIf="produto.estoque === 0">SEM ESTOQUE</span> 
+          <td [ngClass]="'col-status'">
+            <span class="label label-success" *ngIf="produto.estoque >= produto.minimo">NORMAL</span>
+            <span class="label label-warning" *ngIf="produto.estoque < produto.minimo && produto.estoque > 0">BAIXO</span>
+            <span class="label label-danger" *ngIf="produto.estoque === 0">SEM ESTOQUE</span>
          </td>
           <td [ngClass]="'col-acoes'">
             <p-button icon="fa fa-pencil" pTooltip="Editar" tooltipPosition="top"></p-button>
