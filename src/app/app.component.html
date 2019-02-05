@@ -1,0 +1,9 @@
+<app-cabecalho *ngIf="exibirAplicacao()"></app-cabecalho>
+<app-menu-esquerdo *ngIf="exibirAplicacao()"></app-menu-esquerdo>
+
+<p-toast sticky="true" position="bottom-right"></p-toast>
+<section class="aw-layout-content  js-content is-toggled">
+    <router-outlet></router-outlet>
+</section>
+
+<app-rodape *ngIf="exibirAplicacao()"></app-rodape>

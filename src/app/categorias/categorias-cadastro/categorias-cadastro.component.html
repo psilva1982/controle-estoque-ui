@@ -1,0 +1,56 @@
+<div class="page-header">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-10">
+        <h1>
+          {{ categoria.id ? 'Edição de ' : 'Nova '}} categoria
+        </h1>
+      </div>
+
+      <div class="col-xs-2">
+        <div class="aw-page-header-controls">
+          <a class="btn btn-primary" routerLink="/categorias">
+            <i class="fa  fa-search"></i> <span class="hidden-xs  hidden-sm"> Categorias</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="ui-g">
+
+
+    <div class="ui-g-12 ui-fluid">
+      <p-messages key="mensagem"></p-messages>
+    </div>
+
+    <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
+
+      <div class="ui-g-8 ui-sm-12 ui-fluid">
+        <label>Nome </label>
+        <input pInputText type="text" name="nome" [(ngModel)]="categoria.nome" #nome="ngModel" required minlength="5">
+
+        <app-message [control]="nome" error="required" texto="Informe uma descrição">
+        </app-message>
+
+        <app-message [control]="nome" error="minlength" texto="A descrição deve conter no mínimo 5 caracteres">
+        </app-message>
+
+      </div>
+      <div class="ui-g-8 ui-sm-12 ui-fluid">
+        <label>Descrição</label>
+        <input pInputText type="text" name="descricao" [(ngModel)]="categoria.descricao" />
+
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="{{ categoria.id ? 'Atualizar' : 'Salvar'}}" icon="fa fa-save" [disabled]="f.invalid"></button>&nbsp;
+        <button pButton type="button" label="Novo" icon="fa fa-plus" (click)="novo(f)"></button>&nbsp;
+      </div>
+
+    </form>
+  </div>
+
+</div>

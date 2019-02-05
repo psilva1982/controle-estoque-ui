@@ -1,0 +1,35 @@
+.col-acoes {
+    width: 120px;
+    text-align: center;
+}
+
+.col-codigo {
+  width: 100px;
+  text-align: left;
+}
+
+.col-descricao {
+    width: 30%;
+    text-align: left;
+}
+
+.col-medida {
+  width: 150px;
+  text-align: right;
+} 
+
+.col-local {
+  width: 120px;
+  text-align: right;
+} 
+
+
+.col-status {
+  width: 150px;
+  text-align: center;
+}  
+
+.col-estoque {
+  width: 180px;
+  text-align: right;
+}

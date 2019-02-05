@@ -1,0 +1,67 @@
+<div class="page-header">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-10">
+        <h1>
+          {{ subcategoria.id ? 'Edição de ' : 'Nova '}} subcategoria
+        </h1>
+      </div>
+
+      <div class="col-xs-2">
+        <div class="aw-page-header-controls">
+          <a class="btn btn-primary" routerLink="/subcategorias">
+            <i class="fa  fa-search"></i> <span class="hidden-xs  hidden-sm"> Subcategorias</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="ui-g">
+
+
+    <div class="ui-g-12 ui-fluid">
+      <p-messages key="mensagem"></p-messages>
+    </div>
+
+    <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
+
+      <div class="ui-g-5 ui-sm-12 ui-fluid">
+        <label>Subcategoria</label>
+        <input pInputText type="text" name="nome" [(ngModel)]="subcategoria.nome" #nome="ngModel" required minlength="5">
+
+        <app-message [control]="nome" error="required" texto="Informe uma descrição">
+        </app-message>
+
+        <app-message [control]="nome" error="minlength" texto="A descrição deve conter no mínimo 5 caracteres">
+        </app-message>
+
+      </div>
+
+      <div class="ui-g-4 ui-sm-12 ui-fluid">
+        <label>Categoria</label>
+        <p-dropdown [options]="categorias" name="categoria" [(ngModel)]="subcategoria.categoria"
+          placeholder="Selecione" [autoWidth]="false" required #categoria="ngModel"></p-dropdown>
+
+          <app-message [control]="categoria" error="required" texto="Selecione uma categoria">
+            </app-message>
+
+      </div>
+      <div class="ui-g-9 ui-sm-12 ui-fluid">
+        <label>Descrição</label>
+        <input pInputText type="text" name="descricao" [(ngModel)]="subcategoria.descricao" />
+
+      </div>
+
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="{{ subcategoria.id ? 'Atualizar' : 'Salvar'}}" icon="fa fa-save" [disabled]="f.invalid"></button>&nbsp;
+        <button pButton type="button" label="Novo" icon="fa fa-plus" (click)="novo(f)"></button>&nbsp;
+      </div>
+
+    </form>
+  </div>
+
+</div>

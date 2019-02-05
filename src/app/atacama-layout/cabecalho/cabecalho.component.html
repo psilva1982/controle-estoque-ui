@@ -1,0 +1,82 @@
+<nav class="navbar  navbar-fixed-top  navbar-default  js-sticky-reference" id="main-navbar">
+  <div class="container-fluid">
+
+    <div class="navbar-header">
+      <a class="navbar-brand  hidden-xs" href="#">
+        <strong>Controle de Estoque</strong>
+      </a>
+
+      <ul class="nav  navbar-nav">
+        <li>
+          <a href="#" class="js-sidebar-toggle"><i class="fa  fa-bars"></i></a>
+        </li>
+      </ul>
+    </div>
+
+    <ul class="nav navbar-nav  navbar-right">
+
+      <li>
+        <a href="#" aria-expanded="false">
+          <span class="fa fa-dashboard"></span> 
+        </a>
+      </li>
+
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+          <span class="fa fa-database"></span> 
+        </a>
+
+        <ul class="dropdown-menu">
+          <li><a routerLink="/categorias">Categorias</a></li>
+          <li><a routerLink="/subcategorias">Subcategorias</a></li>
+          <li><a routerLink="/produtos">Produtos</a></li>
+        </ul>
+      </li>
+
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+          <span class="fa fa-exchange"></span> 
+        </a>
+
+        <ul class="dropdown-menu">
+          <li><a href="javascript:;">Entrada de Material</a></li>
+          <li><a href="javascript:;">Saída de Material</a></li>
+        </ul>
+      </li>
+
+      <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+            <i class="fa fa-file-text"></i> 
+          </a>
+  
+          <ul class="dropdown-menu">
+            <li><a href="javascript:;">Relatórios</a></li>
+          </ul>
+      </li>
+
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"aria-expanded="false">
+            <i class="fa fa-user" ></i>
+        </a>
+
+        <ul class="dropdown-menu">
+          <li>
+            <div class="aw-logged-user">
+              <img src="assets/images/default-user.png" width="80" height="80" alt="João das Couves"
+                class="aw-logged-user__picture" />
+              <span class="aw-logged-user__name">{{ auth.jwtPayload?.login }}</span>
+            </div>
+          </li>
+          <li role="separator" class="divider"></li>
+          <li>
+              <a href="#"><em class="fa  fa-sign-out"></em> Sair</a>
+          </li>
+
+        </ul>
+      </li>
+
+
+    </ul>
+
+  </div>
+</nav>

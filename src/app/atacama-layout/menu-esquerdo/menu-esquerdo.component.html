@@ -1,0 +1,64 @@
+<aside class="aw-layout-sidebar  js-sidebar is-toggled">
+  <div class="aw-layout-sidebar__content">
+
+    <nav class="aw-menu  js-menu">
+      <ul class="aw-menu__list">
+
+        <li class="aw-menu__item">
+          <a href="#"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
+        </li>
+
+        <li class="aw-menu__item" routerLinkActive="is-active is-expanded">
+          <a href="#">
+            <i class="fa fa-database"></i><span>Cadastros</span>
+            <i class="aw-menu__navigation-icon  fa"></i>
+          </a>
+
+          <ul class="aw-menu__list  aw-menu__list--sublist">
+            <li class="aw-menu__item  aw-menu__item--link" routerLinkActive="is-active" >
+                <a routerLink="/categorias" >Categorias</a>
+            </li>
+
+            <li class="aw-menu__item  aw-menu__item--link" routerLinkActive="is-active" >
+              <a routerLink="/subcategorias" >Subcategorias</a>
+          </li>
+
+          <li class="aw-menu__item  aw-menu__item--link" routerLinkActive="is-active" >
+            <a routerLink="/produtos" >Produtos</a>
+        </li>
+          </ul>
+        </li>
+
+        <li class="aw-menu__item" routerLinkActive="is-active is-expanded">
+            <a href="#">
+              <i class="fa fa-exchange"></i><span>Movimento</span>
+              <i class="aw-menu__navigation-icon  fa"></i>
+            </a>
+
+            <ul class="aw-menu__list  aw-menu__list--sublist">
+              <li class="aw-menu__item  aw-menu__item--link" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">
+                  <a routerLink="/pessoas/nova">Entrada de Material</a></li>
+              <li class="aw-menu__item  aw-menu__item--link" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">
+                  <a routerLink="/pessoas">Saída de Material</a></li>
+            </ul>
+          </li>
+
+          <li class="aw-menu__item" routerLinkActive="is-active">
+            <a href="#">
+              <i class="fa fa-file-text"></i><span>Relatórios</span>
+              <i class="aw-menu__navigation-icon  fa"></i>
+            </a>
+
+            <ul class="aw-menu__list  aw-menu__list--sublist">
+              <li class="aw-menu__item  aw-menu__item--link" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">
+                  <a routerLink="/pessoas/nova">Por Produtos</a></li>
+              <li class="aw-menu__item  aw-menu__item--link" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">
+                  <a routerLink="/pessoas">Por Categoria</a></li>
+            </ul>
+          </li>
+
+      </ul>
+    </nav>
+
+  </div>
+</aside>

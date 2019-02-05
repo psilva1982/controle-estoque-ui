@@ -1,0 +1,48 @@
+<div class="aw-layout-simple-page__container">
+
+  <form #f="ngForm" autocomplete="off">
+
+    <div class="aw-simple-panel">
+      <img alt="AlgaWorks" src="assets/images/logo-gray.png" />
+
+      <div class="aw-simple-panel__message">
+        Por favor, faça o login.
+
+      </div>
+
+      <div class="aw-simple-panel__box">
+          <div class="form-group  has-feedback">
+        <p-messages key="mensagem"></p-messages>
+          </div>
+
+        <div class="form-group  has-feedback">
+          <input type="text" class="form-control  input-lg" placeholder="Seu e-mail" name="usuario" [(ngModel)]="usuario"/>
+          <span class="glyphicon  glyphicon-envelope  form-control-feedback" aria-hidden="true"></span>
+        </div>
+
+        <div class="form-group  has-feedback">
+          <input type="password" class="form-control  input-lg" placeholder="Sua senha" name="senha" [(ngModel)]="senha"/>
+          <span class="glyphicon  glyphicon-lock  form-control-feedback" aria-hidden="true"></span>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn  btn-primary  btn-lg  aw-btn-full-width"
+          (click)="login(usuario.value, senha.value); senha.value=''">Entrar</button>
+        </div>
+
+        <div class="form-group clearfix">
+          <div class="checkbox  pull-left  aw-checkbox-no-margin">
+            <input type="checkbox" id="lembrar" />
+            <label for="lembrar">Lembre de mim</label>
+          </div>
+
+          <div class="pull-right">
+            <a href="esqueceu-a-senha.html">Esqueceu a senha?</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="aw-simple-panel__footer">Novo por aqui? <a href="#">Cadastre-se</a>.</div>
+    </div>
+  </form>
+
+</div>
