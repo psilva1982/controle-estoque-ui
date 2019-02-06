@@ -1,0 +1,118 @@
+<div class="page-header">
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-10">
+        <h1>
+          {{ produto.id ? 'Edição de ' : 'Novo '}} produto
+        </h1>
+      </div>
+
+      <div class="col-xs-2">
+        <div class="aw-page-header-controls">
+          <a class="btn btn-primary" routerLink="/produtos">
+            <i class="fa  fa-search"></i> <span class="hidden-xs  hidden-sm"> Produtos</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+
+  <div class="ui-g-12 ui-fluid">
+    <p-messages key="mensagem"></p-messages>
+  </div>
+  <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
+
+    <div class="row">
+      <div class="ui-g-3 ui-sm-4 ui-fluid">
+        <label>Cód. </label>
+        <input pInputText type="text" name="codigo" [(ngModel)]="produto.codigo" #codigo="ngModel" required minlength="2">
+
+        <app-message [control]="codigo" error="required" texto="Informe um código">
+        </app-message>
+
+        <app-message [control]="codigo" error="minlength" texto="O código deve conter pelo menos 2 carácteres">
+        </app-message>
+      </div>
+
+      <div class="ui-g-7 ui-sm-4 ui-fluid">
+        <label>Descrição </label>
+        <input pInputText type="text" name="descricao" [(ngModel)]="produto.descricao" #descricao="ngModel" required
+          minlength="5">
+
+        <app-message [control]="descricao" error="required" texto="Informe uma descrição">
+        </app-message>
+
+        <app-message [control]="descricao" error="minlength" texto="A descrição deve conter no mínimo 5 caracteres">
+        </app-message>
+      </div>
+    </div>
+    <div class="row">
+      <div class="ui-g-5 ui-sm-6 ui-fluid">
+        <label>Categoria</label>
+        <p-dropdown [options]="categorias" name="categoria" [(ngModel)]="categoriaSelecionada" placeholder="Selecione uma categoria"
+          [autoWidth]="false" required #categoria="ngModel" (onChange)="aoSelecionarCategoria($event)"></p-dropdown>
+
+        <app-message [control]="categoria" error="required" texto="Selecione uma categoria">
+        </app-message>
+
+      </div>
+
+      <div class="ui-g-5 ui-sm-6 ui-fluid">
+        <label>Subcategoria</label>
+        <p-dropdown [options]="subcategorias" name="subcategoria" [(ngModel)]="produto.subcategoria" placeholder="Selecione uma subcategoria"
+          [autoWidth]="false" required #subcategoria="ngModel" [filter]="true" [disabled]="subcategorias.length <= 0 && !produto.id"></p-dropdown>
+
+        <app-message [control]="subcategoria" error="required" texto="Selecione uma subcategoria">
+        </app-message>
+
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="ui-g-4 ui-sm-6 ui-fluid">
+        <label>Quantidade mínima </label>
+        <p-inputMask name="minimo" mask="999999" slotChar=" " [(ngModel)]="produto.minimo"
+          [autoClear]="false" #minimo="ngModel" required></p-inputMask>
+
+        <app-message [control]="minimo" error="required" texto="Informe a quantidade mínima do produto">
+        </app-message>
+      </div>
+
+      <div class="ui-g-3 ui-sm-6 ui-fluid">
+        <label>Unidade de Medida</label>
+        <p-dropdown [options]="unidadesMedida" name="medida" [(ngModel)]="produto.medida" placeholder="Selecione uma unidade de medida"
+          [autoWidth]="false" required #unidade="ngModel" [filter]="true"></p-dropdown>
+
+        <app-message [control]="unidade" error="required" texto="Selecione uma unidade de medida">
+        </app-message>
+
+      </div>
+
+      <div class="ui-g-3 ui-sm-12 ui-fluid">
+        <label>Local de armanezamento</label>
+        <p-dropdown [options]="locais" name="medida" [(ngModel)]="produto.local" placeholder="Selecione um local"
+          [autoWidth]="false" required #local="ngModel" [filter]="true"></p-dropdown>
+
+        <app-message [control]="local" error="required" texto="Selecione uma unidade de medida">
+        </app-message>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="ui-g-12">
+        <button pButton type="submit" label="{{ produto.id ? 'Atualizar' : 'Salvar'}}" icon="fa fa-save"
+          [disabled]="f.invalid"></button>&nbsp;
+        <button pButton type="button" label="Novo" icon="fa fa-plus" (click)="novo(f)"></button>&nbsp;
+      </div>
+    </div>
+
+  </form>
+
+</div>

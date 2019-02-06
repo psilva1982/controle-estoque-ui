@@ -62,4 +62,8 @@ export class ProdutoService {
   excluir(codigo: number) {
     return this.auth.fazerRequisicao(() => this.http.delete(`${this.produtosUrl}/${codigo}`));
   }
+
+  listarTodos() {
+    return this.auth.fazerRequisicao(() => this.http.get(this.produtosUrl));
+  }
 }

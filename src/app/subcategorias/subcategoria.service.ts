@@ -30,12 +30,14 @@ export class SubCategoriaService {
       parametros = parametros.append('search', filtro.nome);
     }
 
-    if(filtro.categoria) {
+    if (filtro.categoria) {
       parametros = parametros.append('categoria', filtro.categoria);
     }
 
     return this.auth.fazerRequisicao(() => this.http.get(this.subcategoriasUrl, { params: parametros }));
   }
+
+
 
   buscarPorId(id: number) {
     return this.auth.fazerRequisicao(() => this.http.get(`${this.subcategoriasUrl}/${id}`));
@@ -55,5 +57,12 @@ export class SubCategoriaService {
 
   listarTodas() {
     return this.auth.fazerRequisicao(() => this.http.get(this.subcategoriasUrl));
+  }
+
+  listarPorCategoria(categoria: number) {
+    let parametros = new HttpParams();
+    parametros = parametros.append('categoria', categoria.toString());
+
+    return this.auth.fazerRequisicao(() => this.http.get(this.subcategoriasUrl, { params: parametros }));
   }
 }

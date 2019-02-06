@@ -5,7 +5,7 @@ import { PaginaNaoEncontradaComponent } from './atacama-layout/pagina-nao-encont
 import { PaginaLoginComponent } from './atacama-layout/pagina-login/pagina-login.component';
 
 const rotas: Routes = [
-  { path: '', redirectTo: 'categorias', pathMatch: 'full' },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 
   { path: 'login', component: PaginaLoginComponent },
   { path: 'pagina-nao-encontrada', component: PaginaNaoEncontradaComponent },

@@ -1172,6 +1172,7 @@ body .ui-button:enabled:active {
 }
 body .ui-button.ui-button-text-only .ui-button-text {
   padding: 0.429em 1em;
+  margin-top: 2px;
 }
 body .ui-button.ui-button-text-icon-left .ui-button-text {
   padding: 0.429em 1em 0.429em 2em;
@@ -1183,7 +1184,7 @@ body .ui-button.ui-button-icon-only {
   width: 2.557em;
 }
 body .ui-button.ui-button-icon-only .ui-button-text {
-  padding: 0.539em;
+  padding: 0.639em;
 }
 body .ui-button.ui-button-raised {
   -webkit-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.15);

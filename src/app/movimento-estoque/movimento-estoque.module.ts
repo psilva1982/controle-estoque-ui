@@ -1,8 +1,7 @@
-import { ProdutoService } from './produtos.service';
-import { ProdutosRoutingModule } from './produtos-routing.module';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+
 
 import {InputTextModule} from 'primeng/inputtext';
 import {TableModule} from 'primeng/table';
@@ -16,33 +15,36 @@ import {InputMaskModule} from 'primeng/inputmask';
 
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from './../shared/shared.module';
 
-import { ProdutosPesquisaComponent } from './produtos-pesquisa/produtos-pesquisa.component';
-import { ProdutosCadastroComponent } from './produtos-cadastro/produtos-cadastro.component';
+import { MovimentoEstoqueCadastroComponent } from './movimento-estoque-cadastro/movimento-estoque-cadastro.component';
+import { MovimentoEstoquePesquisaComponent } from './movimento-estoque-pesquisa/movimento-estoque-pesquisa.component';
+import { MovimentoEstoqueRoutingModule } from './movimento-estoque-routing.module';
 
 @NgModule({
-  declarations: [ProdutosPesquisaComponent, ProdutosCadastroComponent],
+  declarations: [
+    MovimentoEstoqueCadastroComponent,
+    MovimentoEstoquePesquisaComponent
+  ],
   imports: [
     BrowserAnimationsModule,
     HttpClientModule,
+
     SharedModule,
 
     InputTextModule,
     TableModule,
     CalendarModule,
-    CurrencyMaskModule,
     ConfirmDialogModule,
     SelectButtonModule,
     DropdownModule,
     InputTextareaModule,
-    TooltipModule,
     InputMaskModule,
+    TooltipModule,
 
-    ProdutosRoutingModule
-  ],
-  providers: [
-    ProdutoService
+    CurrencyMaskModule,
+
+    MovimentoEstoqueRoutingModule
   ]
 })
-export class ProdutosModule { }
+export class MovimentoEstoqueModule { }

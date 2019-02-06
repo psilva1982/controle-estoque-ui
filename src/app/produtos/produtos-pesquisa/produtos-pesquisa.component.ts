@@ -1,3 +1,5 @@
+import { UnidadeMedidaService } from './../../unidade-medida/unidade-medida.service';
+import { LocalService } from 'src/app/local/local.service';
 import { Produto } from './../../models/Produto';
 import { ProdutoService } from './../produtos.service';
 import { ErrorHandlerService } from 'src/app/shared/error-handler.service';
@@ -32,6 +34,8 @@ export class ProdutosPesquisaComponent implements OnInit {
   constructor(
 
     private subcategoriaService: SubCategoriaService,
+    private locaisService: LocalService,
+    private unidadeMedidaService: UnidadeMedidaService,
     private produtoService: ProdutoService,
     private messageService: MessageService,
     private confirmService: ConfirmationService,
@@ -47,6 +51,8 @@ export class ProdutosPesquisaComponent implements OnInit {
     ];
 
     this.carregarSubCategorias();
+    this.carregarLocais();
+    this.carregarMedidas();
   }
 
   pesquisar(pagina = 0) {
@@ -93,6 +99,32 @@ export class ProdutosPesquisaComponent implements OnInit {
         this.subcategorias = dados.results.map(subcategoria => ({
           label: `${subcategoria.categoria.nome} - ${subcategoria.nome}`,
           value: subcategoria.id,
+        }));
+      },
+
+        erro => this.errorHandlerService.handle(erro)
+      );
+  }
+
+  carregarLocais() {
+    this.locaisService.listarTodos()
+      .subscribe((dados: any) => {
+        this.locais = dados.results.map(local => ({
+          label: local.descricao,
+          value: local.id,
+        }));
+      },
+
+        erro => this.errorHandlerService.handle(erro)
+      );
+  }
+
+  carregarMedidas() {
+    this.unidadeMedidaService.listarTodas()
+      .subscribe((dados: any) => {
+        this.medidas = dados.results.map(medida => ({
+          label: medida.descricao,
+          value: medida.id,
         }));
       },
 

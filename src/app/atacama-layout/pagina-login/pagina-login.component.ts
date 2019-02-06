@@ -30,7 +30,7 @@ export class PaginaLoginComponent implements OnInit {
   login(form: FormControl) {
     this.authService.login(this.usuario, this.senha)
       .then(() => {
-        this.router.navigate(['/categorias']);
+        this.router.navigate(['/dashboard']);
       })
       .catch(erro => this.errorHandlerService.handle(erro));
   }

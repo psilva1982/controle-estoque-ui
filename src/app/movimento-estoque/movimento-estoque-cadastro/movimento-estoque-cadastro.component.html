@@ -1,0 +1,82 @@
+<div class="page-header">
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-10">
+        <h1>
+          {{ cabecalho }}
+        </h1>
+      </div>
+
+      <div class="col-xs-2">
+        <div class="aw-page-header-controls">
+          <a class="btn btn-primary" routerLink="/movimentos">
+            <i class="fa  fa-search"></i> <span class="hidden-xs  hidden-sm"> Movimentação de material</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+
+  <div class="ui-g-12 ui-fluid">
+    <p-messages key="mensagem"></p-messages>
+  </div>
+
+  <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
+
+    <div class="row">
+      <div class="ui-g-3 ui-sm-4 ui-fluid" style="margin-right: 20px">
+        <label>Tipo de movimento</label>
+        <p-selectButton name="tipo" [options]="tiposMovimento" [(ngModel)]="movimento.tipo" (onChange)="mudaMovimento($event)"></p-selectButton>
+      </div>
+
+      <div class="ui-g-3 ui-sm-3 ui-fluid">
+        <label>Data</label>
+        <p-calendar dateFormat="dd/mm/yy" [inline]="false" [readonlyInput]="true" [showIcon]="true" name="data"
+          [(ngModel)]="movimento.data" #vencimento="ngModel" required></p-calendar>
+
+        <app-message [control]="vencimento" error="required" texto="Selecione uma data de vencimento"></app-message>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="ui-g-10 ui-sm-12 ui-fluid">
+        <label>Produto</label>
+        <p-dropdown [options]="produtos" name="produto" [(ngModel)]="movimento.produto" placeholder="Selecione um produto"
+          [autoWidth]="false" required #produto="ngModel" [filter]="true" (onChange)="aoSelecionarProduto($event)"></p-dropdown>
+
+        <app-message [control]="produto" error="required" texto="Selecione uma produto">
+        </app-message>
+      </div>
+
+      <div class="ui-g-2 ui-sm-12 ui-fluid">
+        <label >{{ qtdeLabel }} </label>
+        <input pInputText type="number" name="quantidade" [(ngModel)]="movimento.quantidade" #quantidade="ngModel" required min="0" [max]="qtdeMaxima">
+
+        <app-message [control]="quantidade" error="required" texto="Informe a quantidade">
+        </app-message>
+
+        <app-message [control]="quantidade" error="max" texto="Não existem tantos itens disponíveis no estoque">
+          </app-message>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="ui-g-6 ui-sm-12 ui-fluid">
+          <label>{{ entrada ? 'Origem do produto' : 'Destino do produto'}}</label>
+          <textarea pInputTextarea rows="12"></textarea>
+        </div>
+
+        <div class="ui-g-6 ui-sm-12 ui-fluid">
+            <label>Observações</label>
+            <textarea pInputTextarea rows="12"></textarea>
+          </div>
+    </div>
+
+  </form>
+</div>

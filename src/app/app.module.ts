@@ -1,3 +1,6 @@
+import { DashboardModule } from './dashboard/dashboard.module';
+import { MovimentoEstoqueModule } from './movimento-estoque/movimento-estoque.module';
+import { UnidadeMedidaModule } from './unidade-medida/unidade-medida.module';
 import { ProdutosModule } from './produtos/produtos.module';
 import { CategoriasModule } from './categorias/categorias.module';
 import { SharedModule } from './shared/shared.module';
@@ -14,6 +17,7 @@ import { AppComponent } from './app.component';
 import { AtacamaLayoutModule } from './atacama-layout/atacama-layout.module';
 import { SegurancaModule } from './seguranca/seguranca.module';
 import { SubcategoriasModule } from './subcategorias/subcategorias.module';
+import { LocalModule } from './local/local.module';
 
 registerLocaleData(localePt, 'pt', localePtExtra);
 
@@ -30,6 +34,10 @@ registerLocaleData(localePt, 'pt', localePtExtra);
     CategoriasModule,
     SubcategoriasModule,
     ProdutosModule,
+    UnidadeMedidaModule,
+    LocalModule,
+    MovimentoEstoqueModule,
+    DashboardModule,
 
     AppRoutingModule,
   ],

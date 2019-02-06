@@ -20,7 +20,21 @@ export class ErrorHandlerService {
       && errorResponse.status >= 400 && errorResponse.status <= 499) {
 
       if (errorResponse.status === 400) {
-        msg = errorResponse.error.nome;
+
+        if (errorResponse.error.codigo) {
+          msg = errorResponse.error.codigo;
+
+        } else if (errorResponse.error.nome) {
+          msg = errorResponse.error.nome;
+
+        } else {
+          msg = 'Falha na requisição BAD REQUEST';
+        }
+
+        erro = true;
+
+      } else if (errorResponse.status === 401) {
+        msg = errorResponse.error.detail;
         erro = true;
 
       } else if (errorResponse.status === 403) {
@@ -28,9 +42,17 @@ export class ErrorHandlerService {
         erro = true;
 
       } else {
-        msg = 'Ocorreu um erro ao processar a sua solicitação';
-        erro = true;
 
+        try {
+
+          msg = errorResponse.error.detail;
+          erro = true;
+
+        } finally {
+
+          msg = 'Ocorreu um erro ao processar a sua solicitação';
+          erro = true;
+        }
       }
 
     } else {
