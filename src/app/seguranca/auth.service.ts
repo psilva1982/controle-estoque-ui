@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable, from } from 'rxjs';
+import { Router } from '@angular/router';
 @Injectable()
 export class AuthService {
 
@@ -11,6 +12,7 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
+    private router: Router,
   ) {
     this.carregarToken();
   }
@@ -61,6 +63,7 @@ export class AuthService {
       })
       .catch(response => {
         console.error('Erro ao renovar token.', response);
+        this.router.navigate(['/login']);
         return Promise.resolve(null);
       });
   }

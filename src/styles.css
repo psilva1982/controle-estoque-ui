@@ -1,3 +1,7 @@
 .ui-toast-bottom-right {
   bottom: 40px !important;
 }
+
+.ui-fluid .ui-inputtext:focus { 
+  background-color: #ffffe6 !important;
+}
