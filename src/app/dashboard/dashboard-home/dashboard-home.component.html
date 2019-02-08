@@ -13,10 +13,10 @@
 
       <div class="aw-box">
         <div class="aw-box__icon">
-          <i class="fa  fa-level-up  fa-3x"></i>
+          <i class="fa  fa-trophy  fa-3x"></i>
         </div>
         <div class="aw-box__value">2330</div>
-        <div class="aw-box__title">Saída Mensal</div>
+        <div class="aw-box__title">Maior saida</div>
       </div>
 
     </div>
@@ -25,10 +25,10 @@
 
       <div class="aw-box">
         <div class="aw-box__icon">
-          <i class="fa  fa-cart-arrow-down  fa-3x"></i>
+          <i class="fa  fa-shopping-basket  fa-3x"></i>
         </div>
-        <div class="aw-box__value">123</div>
-        <div class="aw-box__title">Entrada Mensal</div>
+        <div class="aw-box__value"> {{ maiorEstoque }}</div>
+        <div class="aw-box__title">Maior estoque</div>
       </div>
 
     </div>
@@ -39,8 +39,8 @@
         <div class="aw-box__icon">
           <i class="fa  fa-truck  fa-3x"></i>
         </div>
-        <div class="aw-box__value">R$40.233,40</div>
-        <div class="aw-box__title">Estoque Total</div>
+        <div class="aw-box__value">{{ produtos }}</div>
+        <div class="aw-box__title">Produtos Total</div>
       </div>
 
     </div>
@@ -51,10 +51,10 @@
 
       <div class="aw-box">
         <div class="aw-box__icon">
-          <i class="fa  fa-upload  fa-3x"></i>
+          <i class="fa  fa-cloud-upload  fa-3x"></i>
         </div>
         <div class="aw-box__value">1.298</div>
-        <div class="aw-box__title">Saída Anual</div>
+        <div class="aw-box__title">Saída no mês</div>
       </div>
 
     </div>
@@ -63,10 +63,10 @@
 
       <div class="aw-box">
         <div class="aw-box__icon">
-          <i class="fa  fa-download  fa-3x"></i>
+          <i class="fa  fa-cloud-download  fa-3x"></i>
         </div>
         <div class="aw-box__value">1232</div>
-        <div class="aw-box__title">Entrada anual</div>
+        <div class="aw-box__title">Entrada no mês</div>
       </div>
 
     </div>
@@ -77,7 +77,7 @@
         <div class="aw-box__icon">
           <i class="fa  fa-battery-empty  fa-3x"></i>
         </div>
-        <div class="aw-box__value">3.344</div>
+        <div class="aw-box__value">{{ semEstoque }}</div>
         <div class="aw-box__title">Produtos sem estoque</div>
       </div>
 
@@ -106,7 +106,7 @@
     <div class="col-sm-6">
       <div class="aw-graph-box">
         <div class="aw-graph-box__header">
-          <h2 class="aw-graph-box__title">Categorias <small>últimos 12 meses</small></h2>
+          <h2 class="aw-graph-box__title">Estoque <small>produtos por categoria</small></h2>
         </div>
         <div class="aw-graph-box__content" style="position: relative">
           <div class="aw-graph-box__no-data">
