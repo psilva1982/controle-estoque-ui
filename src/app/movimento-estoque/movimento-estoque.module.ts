@@ -20,6 +20,7 @@ import { SharedModule } from './../shared/shared.module';
 import { MovimentoEstoqueCadastroComponent } from './movimento-estoque-cadastro/movimento-estoque-cadastro.component';
 import { MovimentoEstoquePesquisaComponent } from './movimento-estoque-pesquisa/movimento-estoque-pesquisa.component';
 import { MovimentoEstoqueRoutingModule } from './movimento-estoque-routing.module';
+import { MovimentoEstoqueService } from './movimento-estoque.service';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,9 @@ import { MovimentoEstoqueRoutingModule } from './movimento-estoque-routing.modul
     CurrencyMaskModule,
 
     MovimentoEstoqueRoutingModule
+  ], 
+  providers: [
+    MovimentoEstoqueService
   ]
 })
 export class MovimentoEstoqueModule { }

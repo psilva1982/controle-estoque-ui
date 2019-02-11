@@ -10,17 +10,102 @@
 
       <div class="col-xs-2">
         <div class="aw-page-header-controls">
-          <a class="btn btn-success" routerLink="/movimentos/entrada" style="margin-right: 10px"
-          tooltipZIndex="2000" pTooltip="Nova entrada de produto" tooltipPosition="left">
+          <a class="btn btn-success" routerLink="/movimentos/entrada" style="margin-right: 10px" tooltipZIndex="2000"
+            pTooltip="Nova entrada de produto" tooltipPosition="left">
             <i class="fa  fa-download"></i> <span class="hidden-xs  hidden-sm"> Entrada </span>
           </a>
 
-          <a class="btn btn-danger" routerLink="/movimentos/saida"
-          tooltipZIndex="2000" pTooltip="Nova saída de produto" tooltipPosition="left">
+          <a class="btn btn-danger" routerLink="/movimentos/saida" tooltipZIndex="2000" pTooltip="Nova saída de produto"
+            tooltipPosition="left">
             <i class="fa  fa-upload"></i> <span class="hidden-xs  hidden-sm"> Saída </span>
           </a>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+
+  <div class="ui-g-12 ui-fluid">
+    <p-confirmDialog header="Confirmação" icon="pi pi-exclamation-triangle" acceptLabel="Sim" rejectLabel="Cancelar">
+    </p-confirmDialog>
+  </div>
+  <div class="ui-g-12 ui-fluid">
+    <p-messages key="mensagem"></p-messages>
+  </div>
+
+  <form autocomplete="off" (ngSubmit)="pesquisar()">
+
+    <div class="row">
+      <div class="ui-g-7 ui-sm-12 ui-fluid">
+        <label>Pesquisar</label>
+        <input pInputText type="text" icon="fa fa-search" name="nome" placeholder="Código ou descrição"
+          [(ngModel)]="filtro.produto">
+      </div>
+    </div>
+
+
+    <div class="ui-g-12">
+      <button pButton type="submit" label="Pesquisar" icon="fa fa-search"></button>
+      <a routerLink="/subcategorias/nova" style="margin: 20px">
+        <i class="fa  fa-file-pdf-o "></i> <span class="hidden-xs  hidden-sm"> Exportar como PDF</span>
+      </a>
+      <a routerLink="/subcategorias/nova">
+        <i class="fa  fa-file-excel-o"></i> <span class="hidden-xs  hidden-sm"> Exportar como Panilha</span>
+      </a>
+    </div>
+
+  </form>
+
+  <div class="ui-g-12" style="margin-top: 30px">
+
+    <p-table #tabela [value]="movimentos" [responsive]="true" [loading]="carregando" [paginator]="true"
+      [rows]="filtro.itensPorPagina" [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)">
+
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Data</th>
+          <th>Movimento</th>
+          <th>Produto</th>
+          <th>Quantidade</th>
+          <th [ngClass]="'col-local'">Saldo</th>
+          <th>Cadastrado / Alterado</th>
+          <th [ngClass]="'col-acoes'"> </th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-movimento>
+        <tr>
+          <td>{{movimento.data}}</td>
+          <td>
+              <span class="label label-success" *ngIf="movimento.tipo_movimento === 'entrada'">ENTRADA</span>
+              <span class="label label-danger" *ngIf="movimento.tipo_movimento === 'saida'">SAÍDA</span>
+          </td>
+          <td>{{movimento.produto.codigo}} - {{movimento.produto.descricao}}</td>
+          <td>{{movimento.quantidade}}</td>
+          <td> calcular saldo </td>
+          <td> {{movimento.usuario.username }} </td>
+          <td [ngClass]="'col-acoes'">
+            <p-button icon="fa fa-pencil" pTooltip="Editar" tooltipPosition="top"
+            [routerLink]="['/movimentos', movimento.id ]"></p-button>
+            &nbsp;
+            <p-button icon="fa fa-trash" pTooltip="Excluir" tooltipPosition="top" (click)="excluir(movimento)"></p-button>
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="summary">
+        {{ totalRegistros }} Movimentos no estoque registrados
+      </ng-template>
+
+      <ng-template pTemplate="emptymessage" let-columns>
+        <tr>
+          <td [attr.colspan]="6">
+            Nenhuma movimento encontrado
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
   </div>
 </div>

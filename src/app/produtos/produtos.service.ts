@@ -51,6 +51,10 @@ export class ProdutoService {
     return this.auth.fazerRequisicao(() => this.http.get(`${this.produtosUrl}/${id}`));
   }
 
+  verificarEstoque(id: number) {
+    return this.auth.fazerRequisicao(() => this.http.get(`${this.produtosUrl}/${id}/estoque`));
+  }
+
   adicionar(produto: Produto) {
     return this.auth.fazerRequisicao(() => this.http.post(`${this.produtosUrl}/`, produto));
   }

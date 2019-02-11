@@ -30,7 +30,7 @@
     <div class="row">
       <div class="ui-g-3 ui-sm-4 ui-fluid" style="margin-right: 20px">
         <label>Tipo de movimento</label>
-        <p-selectButton name="tipo" [options]="tiposMovimento" [(ngModel)]="movimento.tipo" (onChange)="mudaMovimento($event)"></p-selectButton>
+        <p-selectButton name="tipo" [options]="tiposMovimento" [(ngModel)]="movimento.tipo_movimento" (onChange)="mudaMovimento($event)"></p-selectButton>
       </div>
 
       <div class="ui-g-3 ui-sm-3 ui-fluid">
@@ -77,6 +77,9 @@
             <textarea pInputTextarea rows="12"></textarea>
           </div>
     </div>
-
+    <div class="ui-g-12">
+      <button pButton type="submit" label="{{ movimento.id ? 'Atualizar' : 'Salvar'}}" icon="fa fa-save" [disabled]="f.invalid"></button>&nbsp;
+      <button pButton type="button" label="Novo" icon="fa fa-plus" (click)="novo(f)"></button>&nbsp;
+    </div>
   </form>
 </div>

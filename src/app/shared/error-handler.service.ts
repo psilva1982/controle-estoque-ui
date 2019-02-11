@@ -34,7 +34,7 @@ export class ErrorHandlerService {
         erro = true;
 
       } else if (errorResponse.status === 401) {
-        msg = errorResponse.error.detail;
+        msg = 'Sua sessão expirou. Faça o login novamente.';
         erro = true;
 
       } else if (errorResponse.status === 403) {
