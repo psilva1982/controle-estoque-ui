@@ -2,3 +2,13 @@
     width: 120px;
     text-align: center;
 }
+
+.col-movimento {
+    width: 150px;
+    text-align: center;
+}
+
+.col-data {
+    width: 120px;
+    text-align: right;
+  }
