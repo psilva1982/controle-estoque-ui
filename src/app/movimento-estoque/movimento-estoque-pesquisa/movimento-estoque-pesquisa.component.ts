@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService, LazyLoadEvent } from 'primeng/api';
 import { ErrorHandlerService } from 'src/app/shared/error-handler.service';
 import { MovimentoFiltro, MovimentoEstoqueService } from '../movimento-estoque.service';
 import { Movimento } from 'src/app/models/Movimento';
@@ -30,7 +30,7 @@ export class MovimentoEstoquePesquisaComponent implements OnInit {
 
   ngOnInit() {
 
-    this.pesquisar();
+    
 
   }
 
@@ -70,5 +70,11 @@ export class MovimentoEstoquePesquisaComponent implements OnInit {
         );
       },
     });
+  }
+
+  aoMudarPagina(event: LazyLoadEvent) {
+
+    const pagina = event.first / event.rows;
+    this.pesquisar(pagina);
   }
 }

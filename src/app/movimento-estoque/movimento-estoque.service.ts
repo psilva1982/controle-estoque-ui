@@ -52,7 +52,7 @@ export class MovimentoEstoqueService {
   }
 
   excluir(codigo: number) {
-    return this.auth.fazerRequisicao(() => this.http.delete(`${this.movimentosUrl}/${codigo}`));
+    return this.auth.fazerRequisicao(() => this.http.delete(`${this.movimentosUrl}/${codigo}/`));
   }
 
   listarTodos() {

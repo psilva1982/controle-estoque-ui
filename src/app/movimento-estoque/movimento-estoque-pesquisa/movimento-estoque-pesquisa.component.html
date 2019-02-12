@@ -77,7 +77,7 @@
 
       <ng-template pTemplate="body" let-movimento>
         <tr>
-          <td>{{movimento.data}}</td>
+          <td>{{movimento.data | date:'dd/MM/yyyy' }}</td>
           <td>
               <span class="label label-success" *ngIf="movimento.tipo_movimento === 'entrada'">ENTRADA</span>
               <span class="label label-danger" *ngIf="movimento.tipo_movimento === 'saida'">SAÍDA</span>

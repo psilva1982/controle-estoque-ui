@@ -11,6 +11,7 @@ import { MessageService } from 'primeng/api';
 import { FormControl } from '@angular/forms';
 import { MovimentoEstoqueService } from '../movimento-estoque.service';
 import { AuthService } from 'src/app/seguranca/auth.service';
+import { Produto } from 'src/app/models/Produto';
 
 @Component({
   selector: 'app-movimento-estoque-cadastro',
@@ -27,6 +28,7 @@ export class MovimentoEstoqueCadastroComponent implements OnInit {
   qtdeLabel = 'Quantidade';
   qtdeDisponivel = 0;
   qtdeMaxima = 0;
+  produto_id: number;
 
   @ViewChild('quantidade') quantidadeInput;
 
@@ -100,7 +102,10 @@ export class MovimentoEstoqueCadastroComponent implements OnInit {
       .subscribe((dados: any) => {
         this.produtos = dados.results.map(produto => ({
           label: `${produto.codigo} - ${produto.descricao}`,
-          value: produto.id
+          value: { 
+            id: produto.id,
+            estoque: produto.estoque
+          }
         }));
       },
 
@@ -108,19 +113,11 @@ export class MovimentoEstoqueCadastroComponent implements OnInit {
       );
   }
 
-  verificarEstoque(produto: number) {
-    this.produtoService.verificarEstoque(produto)
-      .subscribe((dados: any) => {
-        this.qtdeDisponivel = dados;
-      },
 
-      erro => this.errorHandlerService.handle(erro)
-      );
-  }
 
   aoSelecionarProduto(event) {
-
-    this.verificarEstoque(event.value);
+    
+    this.qtdeDisponivel = event.value.estoque
 
     if (!this.entrada) {
       this.qtdeLabel = `Itens em estoque: ${this.qtdeDisponivel}`;
@@ -153,8 +150,6 @@ export class MovimentoEstoqueCadastroComponent implements OnInit {
     this.movimento.data = moment(this.movimento.data).format('YYYY-MM-DD');
     this.movimento.usuario = this.auth.jwtPayload.user_id;
 
-    console.log(this.movimento);
-
     this.movimentoService.adicionar(this.movimento)
       .subscribe((dados: any) => {
 
@@ -175,6 +170,7 @@ export class MovimentoEstoqueCadastroComponent implements OnInit {
         .subscribe((dados: any) => {
 
           this.movimento = dados;
+          this.movimento.data =  moment(dados.data, 'YYYY-MM-DD').toDate();
           /*
           this.categoriaSelecionada = dados.subcategoria.categoria.id;
           this.buscarSubCategorias(this.categoriaSelecionada);
