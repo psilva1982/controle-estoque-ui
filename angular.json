@@ -32,6 +32,8 @@
               "src/styles.css"
             ],
             "scripts": [
+              "node_modules/chart.js/dist/Chart.js",
+              "src/assets/javascripts/chartjs-plugin-colorschemes.min.js",
               "src/assets/javascripts/vendors.js",
               "src/assets/javascripts/algaworks.js"
             ]

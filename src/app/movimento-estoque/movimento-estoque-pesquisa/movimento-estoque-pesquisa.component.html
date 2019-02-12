@@ -85,7 +85,11 @@
           <td [ngClass]="'col-produto'">
             {{movimento.produto.codigo}} - {{movimento.produto.descricao}}
           </td>
-          <td [ngClass]="'col-qtde'">{{movimento.quantidade}}</td>
+          <td [ngClass]="'col-qtde'">
+              <span [style.color]="movimento.tipo_movimento === 'saida' ? 'red' : 'blue'">
+                {{movimento.quantidade}}
+              </span>
+          </td>
           <td [ngClass]="'col-estoque'"> {{ movimento.saldo }} </td>
           <td [ngClass]="'col-usuario'"> {{movimento.usuario.username }} </td>
           <td [ngClass]="'col-acoes'">

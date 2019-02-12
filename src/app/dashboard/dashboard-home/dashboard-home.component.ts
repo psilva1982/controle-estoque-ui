@@ -17,6 +17,10 @@ export class DashboardHomeComponent implements OnInit {
   produtos: number;
   produtosCategorias = {};
 
+  pizzaGrafico: any;
+  pizzaLabel = [];
+  pizzaDados = [];
+
   constructor(
     private dashboardService: DashboardService,
     private errorHandlerService: ErrorHandlerService,
@@ -24,6 +28,22 @@ export class DashboardHomeComponent implements OnInit {
 
   ngOnInit() {
     this.recuperarDados();
+
+    setTimeout(function () {
+      this.geraGraficoPizza();
+
+    }.bind(this), 5);
+
+  }
+
+  geraGraficoPizza() {
+    this.pizzaGrafico = {
+      labels: this.pizzaLabel,
+      datasets: [
+          {
+              data: this.pizzaDados,
+          }]
+      };
   }
 
   recuperarDados() {
@@ -34,7 +54,10 @@ export class DashboardHomeComponent implements OnInit {
         this.produtos = dados.total_produtos;
         this.produtosCategorias = dados.produtos_categorias;
 
-        console.log(this.produtosCategorias);
+        for(let i in this.produtosCategorias) {
+          this.pizzaLabel.push(i);
+          this.pizzaDados.push(this.produtosCategorias[i]);
+        }
       },
         erro => this.errorHandlerService.handle(erro)
       );

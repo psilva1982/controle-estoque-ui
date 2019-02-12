@@ -30,8 +30,6 @@ export class MovimentoEstoquePesquisaComponent implements OnInit {
 
   ngOnInit() {
 
-    
-
   }
 
   pesquisar(pagina = 0) {

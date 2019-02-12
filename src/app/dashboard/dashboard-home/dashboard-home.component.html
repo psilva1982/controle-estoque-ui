@@ -108,15 +108,8 @@
         <div class="aw-graph-box__header">
           <h2 class="aw-graph-box__title">Estoque <small>produtos por categoria</small></h2>
         </div>
-        <div class="aw-graph-box__content" style="position: relative">
-          <div class="aw-graph-box__no-data">
-              <i class="fa  fa-line-chart  fa-2x"></i>
-              <span>Não há dados</span>
-          </div>
-
-          <div>
-            <canvas id="lineChart" height="160"></canvas>
-          </div>
+        <div class="aw-graph-box__content">
+          <p-chart type="pie" [data]="pizzaGrafico"></p-chart>
         </div>
       </div>
     </div>
