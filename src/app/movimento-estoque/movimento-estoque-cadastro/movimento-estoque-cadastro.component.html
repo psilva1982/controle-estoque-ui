@@ -47,7 +47,7 @@
     <div class="row">
       <div class="ui-g-10 ui-sm-12 ui-fluid">
         <label>Produto</label>
-        <p-dropdown [options]="produtos" name="produto" [(ngModel)]="movimento.produto" placeholder="Selecione um produto"
+        <p-dropdown [options]="produtos" name="produto" [(ngModel)]="produtoSelecionado" placeholder="Selecione um produto"
           [autoWidth]="false" required #produto="ngModel" [filter]="true" (onChange)="aoSelecionarProduto($event)"></p-dropdown>
 
         <app-message [control]="produto" error="required" texto="Selecione uma produto">
@@ -56,7 +56,8 @@
 
       <div class="ui-g-2 ui-sm-12 ui-fluid">
         <label >{{ qtdeLabel }} </label>
-        <input pInputText type="number" name="quantidade" [(ngModel)]="movimento.quantidade" #quantidade="ngModel" required min="0" [max]="qtdeMaxima">
+        <input pInputText type="number" name="quantidade" [(ngModel)]="movimento.quantidade" 
+          #quantidade="ngModel" required min="0" [max]="qtdeMaxima">
 
         <app-message [control]="quantidade" error="required" texto="Informe a quantidade">
         </app-message>
@@ -69,12 +70,12 @@
     <div class="row">
         <div class="ui-g-6 ui-sm-12 ui-fluid">
           <label>{{ entrada ? 'Origem do produto' : 'Destino do produto'}}</label>
-          <textarea pInputTextarea rows="12"></textarea>
+          <textarea name="motivo" [(ngModel)]="movimento.motivo" pInputTextarea rows="12"></textarea>
         </div>
 
         <div class="ui-g-6 ui-sm-12 ui-fluid">
             <label>Observações</label>
-            <textarea pInputTextarea rows="12"></textarea>
+            <textarea name="observacoes" [(ngModel)]="movimento.observacao" pInputTextarea rows="12"></textarea>
           </div>
     </div>
     <div class="ui-g-12">

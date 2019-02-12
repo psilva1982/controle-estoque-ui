@@ -8,7 +8,27 @@
     text-align: center;
 }
 
+.col-produto {
+    width: 30%;
+    text-align: left;
+}
+
 .col-data {
-    width: 120px;
+    width: 100px;
+    text-align: left;
+}
+
+.col-qtde {
+    width: 150px;
     text-align: right;
-  }
+}
+
+.col-estoque {
+    width: 150px;
+    text-align: right;
+}
+
+.col-usuario {
+    width: 200px;
+    text-align: right;
+}

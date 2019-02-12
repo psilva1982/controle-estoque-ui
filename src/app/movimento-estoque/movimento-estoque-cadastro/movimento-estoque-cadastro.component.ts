@@ -11,7 +11,6 @@ import { MessageService } from 'primeng/api';
 import { FormControl } from '@angular/forms';
 import { MovimentoEstoqueService } from '../movimento-estoque.service';
 import { AuthService } from 'src/app/seguranca/auth.service';
-import { Produto } from 'src/app/models/Produto';
 
 @Component({
   selector: 'app-movimento-estoque-cadastro',
@@ -24,13 +23,11 @@ import { Produto } from 'src/app/models/Produto';
 export class MovimentoEstoqueCadastroComponent implements OnInit {
 
   cabecalho: string;
-  entrada: boolean;
+  entrada = false;
   qtdeLabel = 'Quantidade';
   qtdeDisponivel = 0;
   qtdeMaxima = 0;
-  produto_id: number;
-
-  @ViewChild('quantidade') quantidadeInput;
+  produtoSelecionado: any;
 
   tiposMovimento = [
     { label: 'ENTRADA', value: 'entrada' },
@@ -113,11 +110,10 @@ export class MovimentoEstoqueCadastroComponent implements OnInit {
       );
   }
 
-
-
   aoSelecionarProduto(event) {
-    
-    this.qtdeDisponivel = event.value.estoque
+
+    this.qtdeDisponivel = event.value.estoque;
+    this.movimento.produto = this.produtoSelecionado.id;
 
     if (!this.entrada) {
       this.qtdeLabel = `Itens em estoque: ${this.qtdeDisponivel}`;

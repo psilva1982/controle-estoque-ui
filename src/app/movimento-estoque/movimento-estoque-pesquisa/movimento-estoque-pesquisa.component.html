@@ -65,27 +65,29 @@
 
       <ng-template pTemplate="header">
         <tr>
-          <th>Data</th>
-          <th>Movimento</th>
-          <th>Produto</th>
-          <th>Qtde.</th>
-          <th [ngClass]="'col-local'">Saldo</th>
-          <th>Cadastrado / Alterado</th>
+          <th [ngClass]="'col-data'">Data</th>
+          <th [ngClass]="'col-movimento'">Movimento</th>
+          <th [ngClass]="'col-produto'">Produto</th>
+          <th [ngClass]="'col-qtde'">Qtde.</th>
+          <th [ngClass]="'col-estoque'">Estoque</th>
+          <th [ngClass]="'col-usuario'">Usuário</th>
           <th [ngClass]="'col-acoes'"> </th>
         </tr>
       </ng-template>
 
       <ng-template pTemplate="body" let-movimento>
         <tr>
-          <td>{{movimento.data | date:'dd/MM/yyyy' }}</td>
-          <td>
+          <td [ngClass]="'col-data'">{{movimento.data | date:'dd/MM/yyyy' }}</td>
+          <td [ngClass]="'col-movimento'">
               <span class="label label-success" *ngIf="movimento.tipo_movimento === 'entrada'">ENTRADA</span>
               <span class="label label-danger" *ngIf="movimento.tipo_movimento === 'saida'">SAÍDA</span>
           </td>
-          <td>{{movimento.produto.codigo}} - {{movimento.produto.descricao}}</td>
-          <td>{{movimento.quantidade}}</td>
-          <td> calcular saldo </td>
-          <td> {{movimento.usuario.username }} </td>
+          <td [ngClass]="'col-produto'">
+            {{movimento.produto.codigo}} - {{movimento.produto.descricao}}
+          </td>
+          <td [ngClass]="'col-qtde'">{{movimento.quantidade}}</td>
+          <td [ngClass]="'col-estoque'"> {{ movimento.saldo }} </td>
+          <td [ngClass]="'col-usuario'"> {{movimento.usuario.username }} </td>
           <td [ngClass]="'col-acoes'">
             <p-button icon="fa fa-pencil" pTooltip="Editar" tooltipPosition="top"
             [routerLink]="['/movimentos', movimento.id ]"></p-button>

@@ -27,8 +27,11 @@ export class ErrorHandlerService {
         } else if (errorResponse.error.nome) {
           msg = errorResponse.error.nome;
 
+        } else if (errorResponse.error[0]) {
+          msg = errorResponse.error[0];
+
         } else {
-          msg = 'Falha na requisição BAD REQUEST';
+          msg = 'Erro na requisição bad request';
         }
 
         erro = true;
