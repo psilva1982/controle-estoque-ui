@@ -1,15 +1,15 @@
 .col-acoes {
-    width: 120px;
+    width: 90px;
     text-align: center;
 }
 
 .col-movimento {
-    width: 150px;
+
     text-align: center;
 }
 
 .col-produto {
-    width: 30%;
+    width: 40%;
     text-align: left;
 }
 
@@ -19,16 +19,18 @@
 }
 
 .col-qtde {
-    width: 150px;
     text-align: right;
 }
 
 .col-estoque {
-    width: 150px;
     text-align: right;
 }
 
 .col-usuario {
-    width: 200px;
+
     text-align: right;
+}
+
+.col-status {
+  text-align: center;
 }

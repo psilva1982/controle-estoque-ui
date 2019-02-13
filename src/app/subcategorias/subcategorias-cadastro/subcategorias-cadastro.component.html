@@ -30,12 +30,12 @@
 
       <div class="ui-g-5 ui-sm-12 ui-fluid">
         <label>Nome</label>
-        <input pInputText type="text" name="nome" [(ngModel)]="subcategoria.nome" #nome="ngModel" required minlength="5">
+        <input pInputText type="text" name="nome" [(ngModel)]="subcategoria.nome" #nome="ngModel" required minlength="4">
 
         <app-message [control]="nome" error="required" texto="Informe um nome para a subcategoria">
         </app-message>
 
-        <app-message [control]="nome" error="minlength" texto="O nome deve conter no mínimo 5 caracteres">
+        <app-message [control]="nome" error="minlength" texto="O nome deve conter no mínimo 4 caracteres">
         </app-message>
 
       </div>

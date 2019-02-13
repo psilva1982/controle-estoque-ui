@@ -15,8 +15,8 @@
         <div class="aw-box__icon">
           <i class="fa  fa-trophy  fa-3x"></i>
         </div>
-        <div class="aw-box__value">2330</div>
-        <div class="aw-box__title">Maior saida</div>
+        <div class="aw-box__value">{{ maiorSaidaQtde }}</div>
+        <div class="aw-box__title">Maior saida: {{ maiorSaidaProduto }}</div>
       </div>
 
     </div>
@@ -27,8 +27,8 @@
         <div class="aw-box__icon">
           <i class="fa  fa-shopping-basket  fa-3x"></i>
         </div>
-        <div class="aw-box__value"> {{ maiorEstoque }}</div>
-        <div class="aw-box__title">Maior estoque</div>
+        <div class="aw-box__value"> {{ maiorEstoqueQtde }}</div>
+        <div class="aw-box__title">Maior estoque: {{ maiorEstoqueProduto }}</div>
       </div>
 
     </div>
@@ -53,7 +53,7 @@
         <div class="aw-box__icon">
           <i class="fa  fa-cloud-upload  fa-3x"></i>
         </div>
-        <div class="aw-box__value">1.298</div>
+        <div class="aw-box__value">{{ saidaMensal }}</div>
         <div class="aw-box__title">Saída no mês</div>
       </div>
 
@@ -65,7 +65,7 @@
         <div class="aw-box__icon">
           <i class="fa  fa-cloud-download  fa-3x"></i>
         </div>
-        <div class="aw-box__value">1232</div>
+        <div class="aw-box__value"> {{ entradaMensal }} </div>
         <div class="aw-box__title">Entrada no mês</div>
       </div>
 
@@ -88,17 +88,10 @@
     <div class="col-sm-6">
       <div class="aw-graph-box">
         <div class="aw-graph-box__header">
-          <h2 class="aw-graph-box__title">Movimentação por mês <small>últimos 12 meses</small></h2>
+          <h2 class="aw-graph-box__title">Movimentação por mês <small>em {{ ano }}</small></h2>
         </div>
         <div class="aw-graph-box__content">
-          <div class="aw-graph-box__no-data">
-              <i class="fa  fa-line-chart  fa-2x"></i>
-              <span>Não há dados</span>
-          </div>
-
-          <div>
-            <canvas id="lineChart" height="160"></canvas>
-          </div>
+            <p-chart type="bar" [data]="barraGrafico" #graficoBarra height="380px"></p-chart>
         </div>
       </div>
     </div>
@@ -109,7 +102,7 @@
           <h2 class="aw-graph-box__title">Estoque <small>produtos por categoria</small></h2>
         </div>
         <div class="aw-graph-box__content">
-          <p-chart type="pie" [data]="pizzaGrafico"></p-chart>
+          <p-chart type="pie" [data]="pizzaGrafico" #graficoPizza height="380px"></p-chart>
         </div>
       </div>
     </div>

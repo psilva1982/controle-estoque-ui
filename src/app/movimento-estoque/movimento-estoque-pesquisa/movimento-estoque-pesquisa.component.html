@@ -70,6 +70,7 @@
           <th [ngClass]="'col-produto'">Produto</th>
           <th [ngClass]="'col-qtde'">Qtde.</th>
           <th [ngClass]="'col-estoque'">Estoque</th>
+          <th [ngClass]="'col-status'">Status</th>
           <th [ngClass]="'col-usuario'">Usuário</th>
           <th [ngClass]="'col-acoes'"> </th>
         </tr>
@@ -91,11 +92,13 @@
               </span>
           </td>
           <td [ngClass]="'col-estoque'"> {{ movimento.saldo }} </td>
+          <td [ngClass]="'col-status'">
+              <span class="label label-success" *ngIf="movimento.saldo >= movimento.produto.minimo">NORMAL</span>
+              <span class="label label-warning" *ngIf="movimento.saldo < movimento.produto.minimo && movimento.saldo > 0">BAIXO</span>
+              <span class="label label-danger" *ngIf="movimento.saldo === 0">SEM ESTOQUE</span>
+          </td>
           <td [ngClass]="'col-usuario'"> {{movimento.usuario.username }} </td>
           <td [ngClass]="'col-acoes'">
-            <p-button icon="fa fa-pencil" pTooltip="Editar" tooltipPosition="top"
-            [routerLink]="['/movimentos', movimento.id ]"></p-button>
-            &nbsp;
             <p-button icon="fa fa-trash" pTooltip="Excluir" tooltipPosition="top" (click)="excluir(movimento)"></p-button>
           </td>
         </tr>
