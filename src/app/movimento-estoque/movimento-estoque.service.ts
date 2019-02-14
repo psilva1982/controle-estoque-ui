@@ -31,7 +31,7 @@ export class MovimentoEstoqueService {
         parametros = parametros.append('produto', filtro.produto);
     }
 
-    if (filtro.tipo) {
+    if (filtro.tipo && filtro.tipo !== 'qualquer') {
         parametros = parametros.append('tipo_movimento', filtro.tipo);
     }
 

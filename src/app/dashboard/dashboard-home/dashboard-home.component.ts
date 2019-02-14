@@ -52,10 +52,12 @@ export class DashboardHomeComponent implements OnInit {
       this.geraGraficoBarra();
       this.geraGraficoPizza();
 
-      this.graficoPizza.reinit()
-      this.graficoBarra.reinit()
 
     }.bind(this), 100);
+
+    this.graficoPizza.reinit();
+    this.graficoBarra.reinit();
+
   }
 
   geraGraficoBarra() {

@@ -38,22 +38,46 @@
   <form autocomplete="off" (ngSubmit)="pesquisar()">
 
     <div class="row">
-      <div class="ui-g-7 ui-sm-12 ui-fluid">
-        <label>Pesquisar</label>
-        <input pInputText type="text" icon="fa fa-search" name="nome" placeholder="Código ou descrição"
-          [(ngModel)]="filtro.produto">
+      <div class="ui-g-8 ui-sm-12 ui-fluid">
+        <label>Produto</label>
+        <p-dropdown [options]="produtos" name="produto" [(ngModel)]="filtro.produto" placeholder="Selecione um produto"
+          [autoWidth]="false" [filter]="true"></p-dropdown>
       </div>
     </div>
 
+    <div class="row">
 
+      <div class="ui-g-4 ui-sm-4 ui-fluid">
+        <label>Tipo de movimento</label>
+        <p-selectButton name="tipo" [options]="tiposMovimento" [(ngModel)]="filtro.tipo"></p-selectButton>
+      </div>
+      <!--
+      <div class="ui-g-2 ui-sm-6 ui-fluid">
+        <label style="display: block">Início</label>
+        <p-calendar dateFormat="dd/mm/yy" [inline]="false" [readonlyInput]="true" [showIcon]="true" name="data">
+        </p-calendar>
+      </div>
+
+      <div class="ui-g-2 ui-sm-6 ui-fluid">
+        <label style="display: block">Até</label>
+        <p-calendar dateFormat="dd/mm/yy" [inline]="false" [readonlyInput]="true" [showIcon]="true" name="data">
+        </p-calendar>
+      </div>
+      -->
+    </div>
+
+    <div class="row">
     <div class="ui-g-12">
       <button pButton type="submit" label="Pesquisar" icon="fa fa-search"></button>
+      <!--
       <a routerLink="/subcategorias/nova" style="margin: 20px">
         <i class="fa  fa-file-pdf-o "></i> <span class="hidden-xs  hidden-sm"> Exportar como PDF</span>
       </a>
       <a routerLink="/subcategorias/nova">
         <i class="fa  fa-file-excel-o"></i> <span class="hidden-xs  hidden-sm"> Exportar como Panilha</span>
       </a>
+      -->
+    </div>
     </div>
 
   </form>
@@ -80,26 +104,28 @@
         <tr>
           <td [ngClass]="'col-data'">{{movimento.data | date:'dd/MM/yyyy' }}</td>
           <td [ngClass]="'col-movimento'">
-              <span class="label label-success" *ngIf="movimento.tipo_movimento === 'entrada'">ENTRADA</span>
-              <span class="label label-danger" *ngIf="movimento.tipo_movimento === 'saida'">SAÍDA</span>
+            <span class="label label-success" *ngIf="movimento.tipo_movimento === 'entrada'">ENTRADA</span>
+            <span class="label label-danger" *ngIf="movimento.tipo_movimento === 'saida'">SAÍDA</span>
           </td>
           <td [ngClass]="'col-produto'">
             {{movimento.produto.codigo}} - {{movimento.produto.descricao}}
           </td>
           <td [ngClass]="'col-qtde'">
-              <span [style.color]="movimento.tipo_movimento === 'saida' ? 'red' : 'blue'">
-                {{movimento.quantidade}}
-              </span>
+            <span [style.color]="movimento.tipo_movimento === 'saida' ? 'red' : 'blue'">
+              {{movimento.quantidade}}
+            </span>
           </td>
           <td [ngClass]="'col-estoque'"> {{ movimento.saldo }} </td>
           <td [ngClass]="'col-status'">
-              <span class="label label-success" *ngIf="movimento.saldo >= movimento.produto.minimo">NORMAL</span>
-              <span class="label label-warning" *ngIf="movimento.saldo < movimento.produto.minimo && movimento.saldo > 0">BAIXO</span>
-              <span class="label label-danger" *ngIf="movimento.saldo === 0">SEM ESTOQUE</span>
+            <span class="label label-success" *ngIf="movimento.saldo >= movimento.produto.minimo">NORMAL</span>
+            <span class="label label-warning"
+              *ngIf="movimento.saldo < movimento.produto.minimo && movimento.saldo > 0">BAIXO</span>
+            <span class="label label-danger" *ngIf="movimento.saldo === 0">SEM ESTOQUE</span>
           </td>
           <td [ngClass]="'col-usuario'"> {{movimento.usuario.username }} </td>
           <td [ngClass]="'col-acoes'">
-            <p-button icon="fa fa-trash" pTooltip="Excluir" tooltipPosition="top" (click)="excluir(movimento)"></p-button>
+            <p-button icon="fa fa-trash" pTooltip="Excluir" tooltipPosition="top" (click)="excluir(movimento)">
+            </p-button>
           </td>
         </tr>
       </ng-template>
