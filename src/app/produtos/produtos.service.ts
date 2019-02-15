@@ -27,7 +27,7 @@ export class ProdutoService {
 
     let parametros = new HttpParams();
 
-    parametros = parametros.append('page', filtro.pagina.toString());
+    parametros = parametros.append('offset', (filtro.pagina * filtro.itensPorPagina).toString());
 
     if (filtro.valor) {
       parametros = parametros.append('search', filtro.valor);

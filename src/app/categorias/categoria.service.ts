@@ -23,7 +23,7 @@ export class CategoriaService {
 
     let parametros = new HttpParams();
 
-    parametros = parametros.append('page', filtro.pagina.toString());
+    parametros = parametros.append('offset', (filtro.pagina * filtro.itensPorPagina).toString());
 
     if (filtro.nome) {
       parametros = parametros.append('search', filtro.nome);
