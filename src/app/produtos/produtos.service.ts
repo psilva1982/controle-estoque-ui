@@ -8,6 +8,7 @@ export class ProdutoFiltro {
   subcategoria: string;
   local: string;
   medida: string;
+  estoque: string;
   pagina = 0;
   itensPorPagina = 10;
 }
@@ -38,6 +39,10 @@ export class ProdutoService {
 
     if (filtro.medida) {
         parametros = parametros.append('medida', filtro.medida);
+    }
+
+    if (filtro.estoque) {
+      parametros = parametros.append('status', filtro.estoque);
     }
 
     if (filtro.subcategoria) {

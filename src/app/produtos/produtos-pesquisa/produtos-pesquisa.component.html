@@ -31,26 +31,32 @@
   <form autocomplete="off" (ngSubmit)="pesquisar()">
 
     <div class="row">
-    <div class="ui-g-7 ui-sm-12 ui-fluid">
+    <div class="ui-g-6 ui-sm-12 ui-fluid">
       <label>Pesquisar</label>
       <input pInputText type="text" icon="fa fa-search" name="nome" placeholder="Código ou descrição" [(ngModel)]="filtro.valor">
     </div>
+    <div class="ui-g-2 ui-sm-12 ui-fluid">
+      <label>Estoque</label>
+      <p-dropdown [options]="nivelEstoque" name="estoque" [(ngModel)]="filtro.estoque" placeholder="Todas"
+        [autoWidth]="false"></p-dropdown>
+    
+      </div>
   </div>
 
     <div class="row">
     <div class="ui-g-3 ui-sm-12 ui-fluid">
       <label>Subcategoria</label>
       <p-dropdown [options]="subcategorias" name="subcategoria" [(ngModel)]="filtro.subcategoria" placeholder="Todas"
-        [autoWidth]="false" [autoWidth]="false" [filter]="true"></p-dropdown>
+        [autoWidth]="false" [filter]="true"></p-dropdown>
     </div>
 
     <div class="ui-g-2 ui-sm-12 ui-fluid">
       <label>Unidade de medida</label>
       <p-dropdown [options]="medidas" name="medida" [(ngModel)]="filtro.medida" placeholder="Todas"
-        [autoWidth]="false" [autoWidth]="false"></p-dropdown>
+        [autoWidth]="false" [autoWidth]="false"  [filter]="true"></p-dropdown>
     </div>
 
-    <div class="ui-g-2 ui-sm-12 ui-fluid">
+    <div class="ui-g-3 ui-sm-12 ui-fluid">
       <label>Local</label>
       <p-dropdown [options]="locais" name="local" [(ngModel)]="filtro.local" placeholder="Todos"
         [autoWidth]="false" [autoWidth]="false"></p-dropdown>

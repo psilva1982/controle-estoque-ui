@@ -29,6 +29,12 @@ export class ProdutosPesquisaComponent implements OnInit {
   locais = [];
   subcategorias = [];
 
+  nivelEstoque = [
+    { label: 'Estoque normal', value: 'normal'},
+    { label: 'Estoque baixo', value: 'baixo'},
+    { label: 'Sem estoque', value: 'sem'},
+  ];
+
   @ViewChild('tabela') tabela;
 
   constructor(
