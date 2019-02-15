@@ -19,8 +19,6 @@ export class AuthService {
 
   login(usuario: string, senha: string) {
 
-    this.removeToken();
-
     const body = {
       'username' : usuario,
       'password' : senha
@@ -112,8 +110,9 @@ export class AuthService {
     }
   }
 
-  private removeToken() {
+  removeToken() {
     localStorage.removeItem('token');
+    localStorage.removeItem('refresh');
   }
 }
 

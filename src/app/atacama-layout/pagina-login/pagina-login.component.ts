@@ -25,6 +25,7 @@ export class PaginaLoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.authService.removeToken()
   }
 
   login(form: FormControl) {
