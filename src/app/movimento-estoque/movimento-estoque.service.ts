@@ -25,7 +25,7 @@ export class MovimentoEstoqueService {
 
     let parametros = new HttpParams();
 
-    parametros = parametros.append('page', filtro.pagina.toString());
+    parametros = parametros.append('offset', (filtro.pagina * filtro.itensPorPagina).toString());
 
     if (filtro.produto) {
         parametros = parametros.append('produto', filtro.produto);
