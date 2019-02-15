@@ -27,6 +27,15 @@ export class ErrorHandlerService {
         } else if (errorResponse.error.nome) {
           msg = errorResponse.error.nome;
 
+        } else if (errorResponse.error.non_field_errors) {
+          msg = 'Login ou senha inválida';
+
+        } else if (errorResponse.error.username) {
+          msg = 'Informe o login';
+        
+        } else if (errorResponse.error.password) {
+          msg = 'Informe a senha';
+
         } else if (errorResponse.error[0]) {
           msg = errorResponse.error[0];
 

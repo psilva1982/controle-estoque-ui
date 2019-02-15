@@ -15,8 +15,8 @@ import { Router } from '@angular/router';
 })
 export class PaginaLoginComponent implements OnInit {
 
-  usuario: string;
-  senha: string;
+  usuario = '';
+  senha = '';
 
   constructor(
     private authService: AuthService,
