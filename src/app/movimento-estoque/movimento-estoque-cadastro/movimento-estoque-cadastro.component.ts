@@ -149,8 +149,8 @@ export class MovimentoEstoqueCadastroComponent implements OnInit {
     this.movimentoService.adicionar(this.movimento)
       .subscribe((dados: any) => {
 
-        this.messageService.add({ severity: 'success', summary: 'Movimento', detail: `registrado com sucesso` });
-        this.router.navigate(['/movimentos', dados.id]);
+        this.messageService.add({ severity: 'success', summary: 'Movimento', detail: `Registrado com sucesso` });
+        this.router.navigate(['/movimentos']);
       },
 
         erro => this.errorHandlerService.handle(erro)
