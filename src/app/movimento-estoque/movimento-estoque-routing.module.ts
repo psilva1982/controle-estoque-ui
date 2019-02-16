@@ -8,10 +8,8 @@ const rotas: Routes = [
   { path: 'movimentos', component: MovimentoEstoquePesquisaComponent },
   { path: 'movimentos/entrada', component: MovimentoEstoqueCadastroComponent },
   { path: 'movimentos/saida', component: MovimentoEstoqueCadastroComponent },
-
-  /**
   { path: 'movimentos/:id', component: MovimentoEstoqueCadastroComponent },
-  */
+
 ];
 
 @NgModule({

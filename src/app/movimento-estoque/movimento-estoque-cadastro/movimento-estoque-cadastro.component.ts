@@ -1,6 +1,6 @@
 import { ProdutoService } from './../../produtos/produtos.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import * as moment from 'moment';
 
@@ -27,7 +27,9 @@ export class MovimentoEstoqueCadastroComponent implements OnInit {
   qtdeLabel = 'Quantidade';
   qtdeDisponivel = 0;
   qtdeMaxima = 0;
-  produtoSelecionado: any;
+  produtoSelecionado;
+  produtoSelecionadoPlaceHolder: string;
+  dataMovimento: Date;
 
   tiposMovimento = [
     { label: 'ENTRADA', value: 'entrada' },
@@ -99,7 +101,7 @@ export class MovimentoEstoqueCadastroComponent implements OnInit {
       .subscribe((dados: any) => {
         this.produtos = dados.results.map(produto => ({
           label: `${produto.codigo} - ${produto.descricao}`,
-          value: { 
+          value: {
             id: produto.id,
             estoque: produto.estoque
           }
@@ -143,7 +145,7 @@ export class MovimentoEstoqueCadastroComponent implements OnInit {
 
   salvaNovo(form: FormControl) {
 
-    this.movimento.data = moment(this.movimento.data).format('YYYY-MM-DD');
+    this.movimento.data = moment(this.dataMovimento).format('YYYY-MM-DD');
     this.movimento.usuario = this.auth.jwtPayload.user_id;
 
     this.movimentoService.adicionar(this.movimento)
@@ -161,20 +163,14 @@ export class MovimentoEstoqueCadastroComponent implements OnInit {
     if (this.route.snapshot.params.id) {
 
       const id = this.route.snapshot.params.id;
+      this.cabecalho = 'Detalhe de movimento';
 
       this.movimentoService.buscarPorId(id)
         .subscribe((dados: any) => {
 
           this.movimento = dados;
-          this.movimento.data =  moment(dados.data, 'YYYY-MM-DD').toDate();
-          /*
-          this.categoriaSelecionada = dados.subcategoria.categoria.id;
-          this.buscarSubCategorias(this.categoriaSelecionada);
-
-          this.produto.subcategoria = dados.subcategoria.id;
-          this.produto.local = dados.local.id;
-          this.produto.medida = dados.medida.id;
-          */
+          this.dataMovimento =  moment(dados.data, 'YYYY-MM-DD').toDate();
+          this.produtoSelecionadoPlaceHolder = `${dados.produto.codigo} - ${dados.produto.descricao}`;
         },
 
           erro => this.errorHandlerService.handle(erro)

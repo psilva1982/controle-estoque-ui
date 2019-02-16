@@ -30,15 +30,16 @@
     <div class="row">
       <div class="ui-g-3 ui-sm-4 ui-fluid" style="margin-right: 20px">
         <label>Tipo de movimento</label>
-        <p-selectButton name="tipo" [options]="tiposMovimento" [(ngModel)]="movimento.tipo_movimento" (onChange)="mudaMovimento($event)"></p-selectButton>
+        <p-selectButton name="tipo" [options]="tiposMovimento" [(ngModel)]="movimento.tipo_movimento"
+           (onChange)="mudaMovimento($event)" [disabled]="movimento.id"></p-selectButton>
       </div>
 
       <div class="ui-g-3 ui-sm-3 ui-fluid">
         <label>Data</label>
         <p-calendar dateFormat="dd/mm/yy" [inline]="false" [readonlyInput]="true" [showIcon]="true" name="data"
-          [(ngModel)]="movimento.data" #vencimento="ngModel" required></p-calendar>
+          [(ngModel)]="dataMovimento" #data="ngModel" required [disabled]="movimento.id"></p-calendar>
 
-        <app-message [control]="vencimento" error="required" texto="Selecione uma data de vencimento"></app-message>
+        <app-message [control]="data" error="required" texto="Selecione uma data para o movimento"></app-message>
 
       </div>
 
@@ -47,8 +48,8 @@
     <div class="row">
       <div class="ui-g-10 ui-sm-12 ui-fluid">
         <label>Produto</label>
-        <p-dropdown [options]="produtos" name="produto" [(ngModel)]="produtoSelecionado" placeholder="Selecione um produto"
-          [autoWidth]="false" required #produto="ngModel" [filter]="true" (onChange)="aoSelecionarProduto($event)"></p-dropdown>
+        <p-dropdown [options]="produtos" name="produto" [(ngModel)]="produtoSelecionado" placeholder="{{ movimento.id ? produtoSelecionadoPlaceHolder : 'Selecione um produto'}}"
+          [autoWidth]="false" required #produto="ngModel" [filter]="true" (onChange)="aoSelecionarProduto($event)" [disabled]="movimento.id"></p-dropdown>
 
         <app-message [control]="produto" error="required" texto="Selecione uma produto">
         </app-message>
@@ -57,7 +58,7 @@
       <div class="ui-g-2 ui-sm-12 ui-fluid">
         <label >{{ qtdeLabel }} </label>
         <input pInputText type="number" name="quantidade" [(ngModel)]="movimento.quantidade" 
-          #quantidade="ngModel" required min="0" [max]="qtdeMaxima">
+          #quantidade="ngModel" required min="0" [max]="qtdeMaxima" [disabled]="movimento.id">
 
         <app-message [control]="quantidade" error="required" texto="Informe a quantidade">
         </app-message>
@@ -70,16 +71,17 @@
     <div class="row">
         <div class="ui-g-6 ui-sm-12 ui-fluid">
           <label>{{ entrada ? 'Origem do produto' : 'Destino do produto'}}</label>
-          <textarea name="motivo" [(ngModel)]="movimento.motivo" pInputTextarea rows="12"></textarea>
+          <textarea name="motivo" [(ngModel)]="movimento.motivo" pInputTextarea rows="12" [disabled]="movimento.id"></textarea>
         </div>
 
         <div class="ui-g-6 ui-sm-12 ui-fluid">
             <label>Observações</label>
-            <textarea name="observacoes" [(ngModel)]="movimento.observacao" pInputTextarea rows="12"></textarea>
+            <textarea name="observacoes" [(ngModel)]="movimento.observacao" pInputTextarea rows="12" [disabled]="movimento.id"></textarea>
           </div>
     </div>
     <div class="ui-g-12">
-      <button pButton type="submit" label="{{ movimento.id ? 'Atualizar' : 'Salvar'}}" icon="fa fa-save" [disabled]="f.invalid"></button>&nbsp;
+      <button pButton type="submit" label="Salvar" icon="fa fa-save" [disabled]="f.invalid" *ngIf="!movimento.id"></button>
+      <span *ngIf="!movimento.id"> &nbsp; </span>
       <button pButton type="button" label="Novo" icon="fa fa-plus" (click)="novo(f)"></button>&nbsp;
     </div>
   </form>

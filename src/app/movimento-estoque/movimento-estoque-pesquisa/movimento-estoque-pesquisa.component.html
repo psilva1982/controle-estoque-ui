@@ -124,8 +124,9 @@
           </td>
           <td [ngClass]="'col-usuario'"> {{movimento.usuario.username }} </td>
           <td [ngClass]="'col-acoes'">
-            <p-button icon="fa fa-trash" pTooltip="Excluir" tooltipPosition="top" (click)="excluir(movimento)">
-            </p-button>
+            <p-button icon="fa fa-info-circle" pTooltip="Detalhes" tooltipPosition="top" [routerLink]="['/movimentos', movimento.id ]"></p-button>
+            &nbsp;
+            <p-button icon="fa fa-trash" pTooltip="Excluir" tooltipPosition="top" (click)="excluir(movimento)"></p-button>
           </td>
         </tr>
       </ng-template>

@@ -3,7 +3,7 @@ import { Produto } from './Produto';
 
 export class Movimento {
   id: number;
-  data: any;
+  data: string;
   produto: string;
   tipo_movimento: string;
   motivo: string;
