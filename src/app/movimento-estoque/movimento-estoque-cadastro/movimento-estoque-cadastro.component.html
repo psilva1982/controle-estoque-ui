@@ -34,9 +34,9 @@
            (onChange)="mudaMovimento($event)" [disabled]="movimento.id"></p-selectButton>
       </div>
 
-      <div class="ui-g-3 ui-sm-3 ui-fluid">
+      <div class="ui-g-2 ui-sm-3 ui-fluid">
         <label>Data</label>
-        <p-calendar dateFormat="dd/mm/yy" [inline]="false" [readonlyInput]="true" [showIcon]="true" name="data"
+        <p-calendar dateFormat="dd/mm/yy" [inline]="false" [locale]=locale [readonlyInput]="true" [showIcon]="true" name="data"
           [(ngModel)]="dataMovimento" #data="ngModel" required [disabled]="movimento.id"></p-calendar>
 
         <app-message [control]="data" error="required" texto="Selecione uma data para o movimento"></app-message>
