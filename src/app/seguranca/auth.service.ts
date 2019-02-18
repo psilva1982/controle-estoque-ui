@@ -3,10 +3,12 @@ import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable, from } from 'rxjs';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+
 @Injectable()
 export class AuthService {
 
-  oauthTokenUrl = 'http://localhost:8000/api/token/';
+  oauthTokenUrl: string;
   jwtPayload: any;
   JwtHelper = new JwtHelperService();
 
@@ -14,6 +16,7 @@ export class AuthService {
     private http: HttpClient,
     private router: Router,
   ) {
+    this.oauthTokenUrl = `${environment.apiURL}/api/token/`;
     this.carregarToken();
   }
 

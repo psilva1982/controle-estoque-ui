@@ -2,6 +2,7 @@ import { AuthService } from './../seguranca/auth.service';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Movimento } from '../models/Movimento';
+import { environment } from 'src/environments/environment';
 
 export class MovimentoFiltro {
   produto: string;
@@ -14,12 +15,14 @@ export class MovimentoFiltro {
 @Injectable()
 export class MovimentoEstoqueService {
 
-  movimentosUrl = 'http://localhost:8000/movimentos';
+  movimentosUrl: string;
 
   constructor(
     private http: HttpClient,
     private auth: AuthService,
-  ) { }
+  ) {
+    this.movimentosUrl = `${environment.apiURL}/movimentos`;
+   }
 
   pesquisar(filtro: MovimentoFiltro) {
 

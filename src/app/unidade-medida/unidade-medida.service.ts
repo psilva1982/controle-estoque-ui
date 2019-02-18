@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { Medida } from './../models/Medida';
 import { AuthService } from './../seguranca/auth.service';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
@@ -12,12 +13,14 @@ export class UnidadeMedidaFiltro {
 @Injectable()
 export class UnidadeMedidaService {
 
-  medidasUrl = 'http://localhost:8000/medidas';
+  medidasUrl: string;
 
   constructor(
     private http: HttpClient,
     private auth: AuthService,
-  ) { }
+  ) {
+    this.medidasUrl = `${environment.apiURL}/medidas`;
+  }
 
   pesquisar(filtro: UnidadeMedidaFiltro) {
 

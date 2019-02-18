@@ -44,7 +44,7 @@
           <span class="fa fa-exchange"></span>
         </a>
       </li>
-
+      <!--
       <li class="dropdown" pTooltip="Relatórios" tooltipZIndex="2000" tooltipPosition="bottom">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
             <i class="fa fa-file-text"></i>
@@ -54,6 +54,12 @@
             <li><a href="javascript:;">Estoque de produtos</a></li>
             <li><a href="javascript:;">Movimentação de produtos</a></li>
           </ul>
+      </li>
+      -->
+      <li pTooltip="Configurações do sistema" tooltipZIndex="2000" tooltipPosition="bottom">
+        <a href="{{ adminUrl }}" aria-expanded="false">
+          <span class="fa fa-gears"></span>
+        </a>
       </li>
 
       <li class="dropdown" pTooltip="Usuário" tooltipZIndex="2000" tooltipPosition="left">
@@ -68,6 +74,9 @@
                 class="aw-logged-user__picture" />
               <span class="aw-logged-user__name">{{ auth.jwtPayload?.login }}</span>
             </div>
+          </li>
+          <li>
+            <a href="{{ alterarSenhaUrl }}">Alterar senha</a>
           </li>
           <li role="separator" class="divider"></li>
           <li>

@@ -2,6 +2,7 @@ import { Local } from './../models/Local';
 import { AuthService } from './../seguranca/auth.service';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 export class LocalFiltro {
   descricao: string;
@@ -12,12 +13,14 @@ export class LocalFiltro {
 @Injectable()
 export class LocalService {
 
-  locaisUrl = 'http://localhost:8000/locais';
+  locaisUrl: string;
 
   constructor(
     private http: HttpClient,
     private auth: AuthService,
-  ) { }
+  ) {
+    this.locaisUrl = `${environment.apiURL}/locais`;
+  }
 
   pesquisar(filtro: LocalFiltro) {
 

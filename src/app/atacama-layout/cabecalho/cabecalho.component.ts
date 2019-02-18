@@ -1,5 +1,6 @@
 import { AuthService } from './../../seguranca/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-cabecalho',
@@ -8,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CabecalhoComponent implements OnInit {
 
-  constructor(private auth: AuthService) { }
+  adminUrl: string;
+  alterarSenhaUrl: string;
+
+  constructor(public auth: AuthService) { }
 
   ngOnInit() {
+    this.adminUrl = `${environment.adminURL}/`;
+    this.alterarSenhaUrl = `${environment.adminURL}/password_change`;
   }
 
 }

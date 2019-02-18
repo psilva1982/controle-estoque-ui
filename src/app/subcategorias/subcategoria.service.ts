@@ -2,6 +2,7 @@ import { SubCategoria } from './../models/SubCategoria';
 import { AuthService } from './../seguranca/auth.service';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 export class SubCategoriaFiltro {
   nome: string;
@@ -13,12 +14,14 @@ export class SubCategoriaFiltro {
 @Injectable()
 export class SubCategoriaService {
 
-  subcategoriasUrl = 'http://localhost:8000/subcategorias';
+  subcategoriasUrl: string;
 
   constructor(
     private http: HttpClient,
     private auth: AuthService,
-  ) { }
+  ) {
+    this.subcategoriasUrl = `${environment.apiURL}/subcategorias`;
+  }
 
   pesquisar(filtro: SubCategoriaFiltro) {
 

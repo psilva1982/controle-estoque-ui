@@ -84,7 +84,7 @@
 
   <div class="ui-g-12" style="margin-top: 30px">
 
-    <p-table #tabela [value]="movimentos" [responsive]="true" [loading]="carregando" [paginator]="true"
+    <p-table #tabela [value]="movimentos" [responsive]="true" [paginator]="true"
       [rows]="filtro.itensPorPagina" [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)">
 
       <ng-template pTemplate="header">

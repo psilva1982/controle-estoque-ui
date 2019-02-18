@@ -25,7 +25,7 @@ export class PaginaLoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.authService.removeToken()
+    this.authService.removeToken();
   }
 
   login(form: FormControl) {
@@ -33,6 +33,9 @@ export class PaginaLoginComponent implements OnInit {
       .then(() => {
         this.router.navigate(['/dashboard']);
       })
-      .catch(erro => this.errorHandlerService.handle(erro));
+      .catch(erro => {
+        this.errorHandlerService.handle(erro);
+        this.senha = '';
+      });
   }
 }

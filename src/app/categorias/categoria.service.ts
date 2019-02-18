@@ -2,6 +2,7 @@ import { Categoria } from './../models/Categoria';
 import { AuthService } from './../seguranca/auth.service';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 export class CategoriaFiltro {
   nome: string;
@@ -12,12 +13,14 @@ export class CategoriaFiltro {
 @Injectable()
 export class CategoriaService {
 
-  categoriasUrl = 'http://localhost:8000/categorias/';
+  categoriasUrl: string;
 
   constructor(
     private http: HttpClient,
     private auth: AuthService,
-  ) { }
+  ) {
+    this.categoriasUrl = `${environment.apiURL}/categorias`;
+  }
 
   pesquisar(filtro: CategoriaFiltro) {
 

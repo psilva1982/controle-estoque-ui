@@ -39,7 +39,7 @@
       <label>Estoque</label>
       <p-dropdown [options]="nivelEstoque" name="estoque" [(ngModel)]="filtro.estoque" placeholder="Todas"
         [autoWidth]="false"></p-dropdown>
-    
+
       </div>
   </div>
 
@@ -77,7 +77,7 @@
 
   <div class="ui-g-12" style="margin-top: 30px">
 
-    <p-table #tabela [value]="produtos" [responsive]="true" [loading]="carregando" [paginator]="true" [rows]="filtro.itensPorPagina"
+    <p-table #tabela [value]="produtos" [responsive]="true" [paginator]="true" [rows]="filtro.itensPorPagina"
       [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)">
 
       <ng-template pTemplate="header">

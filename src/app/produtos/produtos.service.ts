@@ -2,6 +2,7 @@ import { Produto } from './../models/Produto';
 import { AuthService } from './../seguranca/auth.service';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 export class ProdutoFiltro {
   valor: string;
@@ -16,12 +17,14 @@ export class ProdutoFiltro {
 @Injectable()
 export class ProdutoService {
 
-  produtosUrl = 'http://localhost:8000/produtos';
+  produtosUrl: string;
 
   constructor(
     private http: HttpClient,
     private auth: AuthService,
-  ) { }
+  ) {
+    this.produtosUrl = `${environment.apiURL}/produtos`;
+   }
 
   pesquisar(filtro: ProdutoFiltro) {
 
