@@ -38,7 +38,6 @@ export class MovimentoEstoqueService {
         parametros = parametros.append('tipo_movimento', filtro.tipo);
     }
 
-
     return this.auth.fazerRequisicao(() => this.http.get(this.movimentosUrl, { params: parametros }));
   }
 
