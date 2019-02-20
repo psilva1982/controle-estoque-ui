@@ -40,7 +40,7 @@ export class CategoriaService {
   }
 
   adicionar(categoria: Categoria) {
-    return this.auth.fazerRequisicao(() => this.http.post(this.categoriasUrl, categoria));
+    return this.auth.fazerRequisicao(() => this.http.post(`${this.categoriasUrl}/`, categoria));
   }
 
   atualizar(categoria: Categoria) {
