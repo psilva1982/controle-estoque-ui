@@ -36,7 +36,7 @@ export class CategoriaService {
   }
 
   buscarPorId(id: number) {
-    return this.auth.fazerRequisicao(() => this.http.get(`${this.categoriasUrl}${id}`));
+    return this.auth.fazerRequisicao(() => this.http.get(`${this.categoriasUrl}/${id}`));
   }
 
   adicionar(categoria: Categoria) {
@@ -44,11 +44,11 @@ export class CategoriaService {
   }
 
   atualizar(categoria: Categoria) {
-    return this.auth.fazerRequisicao(() => this.http.put(`${this.categoriasUrl}${categoria.id}/`, categoria));
+    return this.auth.fazerRequisicao(() => this.http.put(`${this.categoriasUrl}/${categoria.id}/`, categoria));
   }
 
   excluir(codigo: number) {
-    return this.auth.fazerRequisicao(() => this.http.delete(`${this.categoriasUrl}${codigo}`));
+    return this.auth.fazerRequisicao(() => this.http.delete(`${this.categoriasUrl}/${codigo}`));
   }
 
   listarTodas() {
