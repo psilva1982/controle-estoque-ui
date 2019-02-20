@@ -5,7 +5,7 @@
       <ul class="aw-menu__list">
 
         <li class="aw-menu__item">
-          <a href="#"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
+          <a  routerLink="/dashboard"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
         </li>
 
         <li class="aw-menu__item" routerLinkActive="is-active is-expanded">
@@ -42,21 +42,6 @@
                   <a routerLink="/movimentos/saida">Saída de Material</a></li>
             </ul>
           </li>
-
-          <li class="aw-menu__item" routerLinkActive="is-active">
-            <a href="#">
-              <i class="fa fa-file-text"></i><span>Relatórios</span>
-              <i class="aw-menu__navigation-icon  fa"></i>
-            </a>
-
-            <ul class="aw-menu__list  aw-menu__list--sublist">
-              <li class="aw-menu__item  aw-menu__item--link" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">
-                  <a routerLink="/pessoas/nova">Por Produtos</a></li>
-              <li class="aw-menu__item  aw-menu__item--link" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">
-                  <a routerLink="/pessoas">Por Categoria</a></li>
-            </ul>
-          </li>
-
       </ul>
     </nav>
 
