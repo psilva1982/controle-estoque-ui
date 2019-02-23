@@ -11,12 +11,14 @@ export class CabecalhoComponent implements OnInit {
 
   adminUrl: string;
   alterarSenhaUrl: string;
+  relatorioProdutosUrl: string;
 
   constructor(public auth: AuthService) { }
 
   ngOnInit() {
     this.adminUrl = `${environment.adminURL}/`;
-    this.alterarSenhaUrl = `${environment.adminURL}/password_change`;
+    this.alterarSenhaUrl = `${environment.adminURL}/password_change`; 
+    this.relatorioProdutosUrl = `${environment.apiURL}/relatorios/produtos`;
   }
 
 }
