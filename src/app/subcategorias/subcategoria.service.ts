@@ -27,7 +27,7 @@ export class SubCategoriaService {
 
     let parametros = new HttpParams();
 
-    parametros = parametros.append('offset', (filtro.pagina * filtro.itensPorPagina).toString());
+    parametros = parametros.append('page', filtro.pagina.toString());
 
     if (filtro.nome) {
       parametros = parametros.append('search', filtro.nome);
@@ -39,8 +39,6 @@ export class SubCategoriaService {
 
     return this.auth.fazerRequisicao(() => this.http.get(this.subcategoriasUrl, { params: parametros }));
   }
-
-
 
   buscarPorId(id: number) {
     return this.auth.fazerRequisicao(() => this.http.get(`${this.subcategoriasUrl}/${id}`));
@@ -59,7 +57,7 @@ export class SubCategoriaService {
   }
 
   listarTodas() {
-    return this.auth.fazerRequisicao(() => this.http.get(this.subcategoriasUrl));
+    return this.auth.fazerRequisicao(() => this.http.get(`${this.subcategoriasUrl}?page_size=0`));
   }
 
   listarPorCategoria(categoria: number) {

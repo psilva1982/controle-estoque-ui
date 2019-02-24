@@ -40,7 +40,7 @@ export class SubcategoriasPesquisaComponent implements OnInit {
   }
 
 
-  pesquisar(pagina = 0) {
+  pesquisar(pagina = 1) {
 
     this.filtro.pagina = pagina;
 
@@ -94,6 +94,6 @@ export class SubcategoriasPesquisaComponent implements OnInit {
   aoMudarPagina(event: LazyLoadEvent) {
 
     const pagina = event.first / event.rows;
-    this.pesquisar(pagina);
+    this.pesquisar(pagina+1);
   }
 }

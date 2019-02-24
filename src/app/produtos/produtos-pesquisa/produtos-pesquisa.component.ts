@@ -108,7 +108,7 @@ export class ProdutosPesquisaComponent implements OnInit {
   carregarSubCategorias() {
     this.subcategoriaService.listarTodas()
       .subscribe((dados: any) => {
-        this.subcategorias = dados.results.map(subcategoria => ({
+        this.subcategorias = dados.map(subcategoria => ({
           label: `${subcategoria.categoria.nome} - ${subcategoria.nome}`,
           value: subcategoria.id,
         }));
