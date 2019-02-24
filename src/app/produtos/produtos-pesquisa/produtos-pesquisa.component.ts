@@ -8,6 +8,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProdutoFiltro } from '../produtos.service';
 import { SubCategoriaService } from 'src/app/subcategorias/subcategoria.service';
 import { LazyLoadEvent } from 'primeng/components/common/api';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -28,6 +29,7 @@ export class ProdutosPesquisaComponent implements OnInit {
   medidas = [];
   locais = [];
   subcategorias = [];
+  relatorioProdutoURL: string;
 
   nivelEstoque = [
     { label: 'Estoque normal', value: 'normal'},
@@ -47,7 +49,9 @@ export class ProdutosPesquisaComponent implements OnInit {
     private confirmService: ConfirmationService,
     private errorHandlerService: ErrorHandlerService,
 
-  ) { }
+  ) {
+    this.relatorioProdutoURL = `${environment.apiURL}/relatorios/produtos?`;
+  }
 
   ngOnInit() {
 
@@ -69,6 +73,8 @@ export class ProdutosPesquisaComponent implements OnInit {
       .subscribe((dados: any) => {
         this.totalRegistros = dados.count;
         this.produtos = dados.results;
+
+        this.gerarRelatorioPDF();
       },
 
         erro => this.errorHandlerService.handle(erro)
@@ -155,6 +161,29 @@ export class ProdutosPesquisaComponent implements OnInit {
 
     } else {
       return 'Normal';
+    }
+  }
+
+  gerarRelatorioPDF() {
+
+    if (this.filtro.estoque) {
+      this.relatorioProdutoURL = `${this.relatorioProdutoURL}estoque=${this.filtro.estoque}&`;
+    }
+
+    if (this.filtro.local) {
+      this.relatorioProdutoURL = `${this.relatorioProdutoURL}local=${this.filtro.local}&`;
+    }
+
+    if (this.filtro.medida) {
+      this.relatorioProdutoURL = `${this.relatorioProdutoURL}medida=${this.filtro.medida}&`;
+    }
+
+    if (this.filtro.subcategoria) {
+      this.relatorioProdutoURL = `${this.relatorioProdutoURL}subcategoria=${this.filtro.subcategoria}&`;
+    }
+
+    if (this.filtro.valor) {
+      this.relatorioProdutoURL = `${this.relatorioProdutoURL}descricao=${this.filtro.valor}&`;
     }
   }
 }
