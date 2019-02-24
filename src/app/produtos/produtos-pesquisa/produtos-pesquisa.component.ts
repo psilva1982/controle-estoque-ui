@@ -186,4 +186,8 @@ export class ProdutosPesquisaComponent implements OnInit {
       this.relatorioProdutoURL = `${this.relatorioProdutoURL}descricao=${this.filtro.valor}&`;
     }
   }
+
+  abrirRelatorio() {
+    window.open(this.relatorioProdutoURL);
+  }
 }
