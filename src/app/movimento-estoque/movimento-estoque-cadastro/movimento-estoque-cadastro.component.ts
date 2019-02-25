@@ -112,7 +112,7 @@ export class MovimentoEstoqueCadastroComponent implements OnInit {
   carregarProdutos() {
     this.produtoService.listarTodos()
       .subscribe((dados: any) => {
-        this.produtos = dados.results.map(produto => ({
+        this.produtos = dados.map(produto => ({
           label: `${produto.codigo} - ${produto.descricao}`,
           value: {
             id: produto.id,

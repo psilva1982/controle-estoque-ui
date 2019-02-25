@@ -76,6 +76,6 @@ export class CategoriasPesquisaComponent implements OnInit {
   aoMudarPagina(event: LazyLoadEvent) {
 
     const pagina = event.first / event.rows;
-    this.pesquisar(pagina);
+    this.pesquisar(pagina + 1);
   }
 }

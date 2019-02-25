@@ -102,7 +102,7 @@ export class SubcategoriasCadastroComponent implements OnInit {
   carregarCategorias() {
     this.categoriaService.listarTodas()
       .subscribe((dados: any) => {
-        this.categorias = dados.results.map(categoria => ({
+        this.categorias = dados.map(categoria => ({
           label: categoria.nome,
           value: categoria.id,
         }));
@@ -112,7 +112,7 @@ export class SubcategoriasCadastroComponent implements OnInit {
       );
   }
 
-  defineNomeCategoria(event) { 
+  defineNomeCategoria(event) {
     console.log(event.originalEvent.srcElement.textContent);
     this.subcategoria.categoria.nome = event.originalEvent.srcElement.textContent;
   }

@@ -52,6 +52,6 @@ export class CategoriaService {
   }
 
   listarTodas() {
-    return this.auth.fazerRequisicao(() => this.http.get(this.categoriasUrl));
+    return this.auth.fazerRequisicao(() => this.http.get(`${this.categoriasUrl}?page_size=0`));
   }
 }

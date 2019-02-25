@@ -52,6 +52,6 @@ export class UnidadeMedidaService {
   }
 
   listarTodas() {
-    return this.auth.fazerRequisicao(() => this.http.get(this.medidasUrl));
+    return this.auth.fazerRequisicao(() => this.http.get(`${this.medidasUrl}?page_size=0`));
   }
 }

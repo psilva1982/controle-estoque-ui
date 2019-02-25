@@ -28,7 +28,7 @@ export class MovimentoEstoqueService {
 
     let parametros = new HttpParams();
 
-    parametros = parametros.append('offset', (filtro.pagina * filtro.itensPorPagina).toString());
+    parametros = parametros.append('page', filtro.pagina.toString());
 
     if (filtro.produto) {
         parametros = parametros.append('produto', filtro.produto);
@@ -58,6 +58,6 @@ export class MovimentoEstoqueService {
   }
 
   listarTodos() {
-    return this.auth.fazerRequisicao(() => this.http.get(this.movimentosUrl));
+    return this.auth.fazerRequisicao(() => this.http.get(`${this.movimentosUrl}?page_size=0`));
   }
 }

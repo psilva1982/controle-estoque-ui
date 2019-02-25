@@ -81,7 +81,7 @@ export class SubcategoriasPesquisaComponent implements OnInit {
   carregarCategorias() {
     this.categoriaService.listarTodas()
       .subscribe((dados: any) => {
-        this.categorias = dados.results.map(categoria => ({
+        this.categorias = dados.map(categoria => ({
           label: categoria.nome,
           value: categoria.id,
         }));
@@ -94,6 +94,6 @@ export class SubcategoriasPesquisaComponent implements OnInit {
   aoMudarPagina(event: LazyLoadEvent) {
 
     const pagina = event.first / event.rows;
-    this.pesquisar(pagina+1);
+    this.pesquisar(pagina + 1);
   }
 }

@@ -42,7 +42,7 @@ export class MovimentoEstoquePesquisaComponent implements OnInit {
     this.filtro.tipo = 'qualquer';
   }
 
-  pesquisar(pagina = 0) {
+  pesquisar(pagina = 1) {
 
     this.filtro.pagina = pagina;
 
@@ -83,7 +83,7 @@ export class MovimentoEstoquePesquisaComponent implements OnInit {
   carregarProdutos() {
     this.produtoService.listarTodos()
       .subscribe((dados: any) => {
-        this.produtos = dados.results.map(produto => ({
+        this.produtos = dados.map(produto => ({
           label: `${produto.codigo} - ${produto.descricao}`,
           value: produto.id
         }));
@@ -96,6 +96,6 @@ export class MovimentoEstoquePesquisaComponent implements OnInit {
   aoMudarPagina(event: LazyLoadEvent) {
 
     const pagina = event.first / event.rows;
-    this.pesquisar(pagina);
+    this.pesquisar(pagina + 1);
   }
 }

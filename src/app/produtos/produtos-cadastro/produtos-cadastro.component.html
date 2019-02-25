@@ -76,8 +76,7 @@
 
       <div class="ui-g-4 ui-sm-6 ui-fluid">
         <label>Quantidade mínima </label>
-        <p-inputMask name="minimo" mask="999999" slotChar=" " [(ngModel)]="produto.minimo"
-          [autoClear]="false" #minimo="ngModel" required></p-inputMask>
+        <input pInputText type="number" name="minimo" [(ngModel)]="produto.minimo" #minimo="ngModel" required min="0">
 
         <app-message [control]="minimo" error="required" texto="Informe a quantidade mínima do produto">
         </app-message>
@@ -86,19 +85,19 @@
       <div class="ui-g-3 ui-sm-6 ui-fluid">
         <label>Unidade de Medida</label>
         <p-dropdown [options]="unidadesMedida" name="medida" [(ngModel)]="produto.medida" placeholder="Selecione uma unidade de medida"
-          [autoWidth]="false" required #unidade="ngModel" [filter]="true"></p-dropdown>
+          [autoWidth]="false" required #medida="ngModel" [filter]="true"></p-dropdown>
 
-        <app-message [control]="unidade" error="required" texto="Selecione uma unidade de medida">
+        <app-message [control]="medida" error="required" texto="Selecione uma unidade de medida">
         </app-message>
 
       </div>
 
       <div class="ui-g-3 ui-sm-12 ui-fluid">
         <label>Local de armanezamento</label>
-        <p-dropdown [options]="locais" name="medida" [(ngModel)]="produto.local" placeholder="Selecione um local"
+        <p-dropdown [options]="locais" name="local" [(ngModel)]="produto.local" placeholder="Selecione um local"
           [autoWidth]="false" required #local="ngModel" [filter]="true"></p-dropdown>
 
-        <app-message [control]="local" error="required" texto="Selecione uma unidade de medida">
+        <app-message [control]="local" error="required" texto="Selecione local de armazenamento">
         </app-message>
 
       </div>

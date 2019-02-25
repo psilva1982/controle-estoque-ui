@@ -64,6 +64,6 @@ export class SubCategoriaService {
     let parametros = new HttpParams();
     parametros = parametros.append('categoria', categoria.toString());
 
-    return this.auth.fazerRequisicao(() => this.http.get(this.subcategoriasUrl, { params: parametros }));
+    return this.auth.fazerRequisicao(() => this.http.get(`${this.subcategoriasUrl}?page_size=0`, { params: parametros }));
   }
 }

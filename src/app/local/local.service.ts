@@ -52,6 +52,6 @@ export class LocalService {
   }
 
   listarTodos() {
-    return this.auth.fazerRequisicao(() => this.http.get(this.locaisUrl));
+    return this.auth.fazerRequisicao(() => this.http.get(`${this.locaisUrl}?page_size=0`));
   }
 }

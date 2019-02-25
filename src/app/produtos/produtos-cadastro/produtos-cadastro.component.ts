@@ -117,7 +117,7 @@ export class ProdutosCadastroComponent implements OnInit {
   carregarCategorias() {
     this.categoriaService.listarTodas()
       .subscribe((dados: any) => {
-        this.categorias = dados.results.map(categoria => ({
+        this.categorias = dados.map(categoria => ({
           label: categoria.nome,
           value: categoria.id,
         }));
@@ -130,7 +130,7 @@ export class ProdutosCadastroComponent implements OnInit {
   carregarUnidadesMedida() {
     this.unidadeMedidaService.listarTodas()
       .subscribe((dados: any) => {
-        this.unidadesMedida = dados.results.map(medida => ({
+        this.unidadesMedida = dados.map(medida => ({
           label: medida.descricao,
           value: medida.id,
         }));
@@ -143,7 +143,7 @@ export class ProdutosCadastroComponent implements OnInit {
   carregarLocais() {
     this.localService.listarTodos()
       .subscribe((dados: any) => {
-        this.locais = dados.results.map(local => ({
+        this.locais = dados.map(local => ({
           label: local.descricao,
           value: local.id,
         }));
@@ -160,7 +160,7 @@ export class ProdutosCadastroComponent implements OnInit {
   buscarSubCategorias(categoria: number) {
     this.subcategoriaService.listarPorCategoria(categoria)
       .subscribe((dados: any) => {
-        this.subcategorias = dados.results.map(subcategoria => ({
+        this.subcategorias = dados.map(subcategoria => ({
           label: subcategoria.nome,
           value: subcategoria.id,
         }));

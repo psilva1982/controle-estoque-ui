@@ -65,7 +65,7 @@ export class ProdutosPesquisaComponent implements OnInit {
     this.carregarMedidas();
   }
 
-  pesquisar(pagina = 0) {
+  pesquisar(pagina = 1) {
 
     this.filtro.pagina = pagina;
 
@@ -121,7 +121,7 @@ export class ProdutosPesquisaComponent implements OnInit {
   carregarLocais() {
     this.locaisService.listarTodos()
       .subscribe((dados: any) => {
-        this.locais = dados.results.map(local => ({
+        this.locais = dados.map(local => ({
           label: local.descricao,
           value: local.id,
         }));
@@ -134,7 +134,7 @@ export class ProdutosPesquisaComponent implements OnInit {
   carregarMedidas() {
     this.unidadeMedidaService.listarTodas()
       .subscribe((dados: any) => {
-        this.medidas = dados.results.map(medida => ({
+        this.medidas = dados.map(medida => ({
           label: medida.descricao,
           value: medida.id,
         }));
@@ -147,7 +147,7 @@ export class ProdutosPesquisaComponent implements OnInit {
   aoMudarPagina(event: LazyLoadEvent) {
 
     const pagina = event.first / event.rows;
-    this.pesquisar(pagina);
+    this.pesquisar(pagina + 1);
   }
 
 

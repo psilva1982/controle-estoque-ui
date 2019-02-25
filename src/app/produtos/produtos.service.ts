@@ -30,7 +30,7 @@ export class ProdutoService {
 
     let parametros = new HttpParams();
 
-    parametros = parametros.append('offset', (filtro.pagina * filtro.itensPorPagina).toString());
+    parametros = parametros.append('page', filtro.pagina.toString());
 
     if (filtro.valor) {
       parametros = parametros.append('search', filtro.valor);
@@ -76,6 +76,6 @@ export class ProdutoService {
   }
 
   listarTodos() {
-    return this.auth.fazerRequisicao(() => this.http.get(this.produtosUrl));
+    return this.auth.fazerRequisicao(() => this.http.get(`${this.produtosUrl}?page_size=0`));
   }
 }
