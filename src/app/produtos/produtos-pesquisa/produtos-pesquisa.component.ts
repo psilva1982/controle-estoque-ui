@@ -189,5 +189,6 @@ export class ProdutosPesquisaComponent implements OnInit {
 
   abrirRelatorio() {
     window.open(this.relatorioProdutoURL);
+    this.relatorioProdutoURL = `${environment.apiURL}/relatorios/produtos?`;
   }
 }

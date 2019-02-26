@@ -4,6 +4,9 @@ import { ErrorHandlerService } from 'src/app/shared/error-handler.service';
 import { MovimentoFiltro, MovimentoEstoqueService } from '../movimento-estoque.service';
 import { Movimento } from 'src/app/models/Movimento';
 import { ProdutoService } from 'src/app/produtos/produtos.service';
+import { environment } from 'src/environments/environment';
+
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-movimento-estoque-pesquisa',
@@ -20,6 +23,8 @@ export class MovimentoEstoquePesquisaComponent implements OnInit {
   filtro = new MovimentoFiltro();
   movimentos = [];
   produtos = [];
+  locale: any;
+  relatorioMovimentoUrl: string;
 
   tiposMovimento = [
     { label: 'Todos', value: 'qualquer' },
@@ -40,6 +45,21 @@ export class MovimentoEstoquePesquisaComponent implements OnInit {
   ngOnInit() {
     this.carregarProdutos();
     this.filtro.tipo = 'qualquer';
+
+    this.locale = {
+      firstDayOfWeek: 0,
+      dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+      dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+      dayNamesMin: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],
+      monthNames: [ 'Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro' ],
+      monthNamesShort: [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun','Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez' ],
+      today: 'Hoje',
+      clear: 'Limpar',
+      dateFormat: '/dd/mm/yy'
+    };
+
+    this.relatorioMovimentoUrl = `${environment.apiURL}/relatorios/movimentos?`;
+
   }
 
   pesquisar(pagina = 1) {
@@ -50,6 +70,8 @@ export class MovimentoEstoquePesquisaComponent implements OnInit {
       .subscribe((dados: any) => {
         this.totalRegistros = dados.count;
         this.movimentos = dados.results;
+
+        this.geraRelatorioPDF();
       },
 
         erro => this.errorHandlerService.handle(erro)
@@ -97,5 +119,31 @@ export class MovimentoEstoquePesquisaComponent implements OnInit {
 
     const pagina = event.first / event.rows;
     this.pesquisar(pagina + 1);
+  }
+
+  geraRelatorioPDF() {
+
+    if (this.filtro.produto) {
+      this.relatorioMovimentoUrl = `${this.relatorioMovimentoUrl}produto=${this.filtro.produto}&`;
+    }
+
+    if (this.filtro.tipo && this.filtro.tipo !== 'qualquer') {
+      this.relatorioMovimentoUrl = `${this.relatorioMovimentoUrl}tipo_movimento=${this.filtro.tipo}&`;
+    }
+
+    if (this.filtro.dataDe) {
+      const data = moment(this.filtro.dataDe).format('YYYY-MM-DD');
+      this.relatorioMovimentoUrl = `${this.relatorioMovimentoUrl}data__gte=${data}&`;
+    }
+
+    if (this.filtro.dataAte) {
+      const data = moment(this.filtro.dataAte).format('YYYY-MM-DD');
+      this.relatorioMovimentoUrl = `${this.relatorioMovimentoUrl}data__lte=${data}&`;
+    }
+  }
+
+  abrirRelatorio() {
+    window.open(this.relatorioMovimentoUrl);
+    this.relatorioMovimentoUrl = `${environment.apiURL}/relatorios/movimentos?`;
   }
 }

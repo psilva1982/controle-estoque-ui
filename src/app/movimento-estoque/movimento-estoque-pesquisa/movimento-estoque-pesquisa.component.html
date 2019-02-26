@@ -51,28 +51,27 @@
         <label>Tipo de movimento</label>
         <p-selectButton name="tipo" [options]="tiposMovimento" [(ngModel)]="filtro.tipo"></p-selectButton>
       </div>
-      <!--
+
       <div class="ui-g-2 ui-sm-6 ui-fluid">
-        <label style="display: block">Início</label>
-        <p-calendar dateFormat="dd/mm/yy" [inline]="false" [readonlyInput]="true" [showIcon]="true" name="data">
-        </p-calendar>
+        <label style="display: block">A partir de</label>
+        <p-calendar dateFormat="dd/mm/yy" [inline]="false" [readonlyInput]="true" [showIcon]="true"
+          name="dataDe" [locale]="locale" [(ngModel)]="filtro.dataDe"></p-calendar>
       </div>
 
       <div class="ui-g-2 ui-sm-6 ui-fluid">
         <label style="display: block">Até</label>
-        <p-calendar dateFormat="dd/mm/yy" [inline]="false" [readonlyInput]="true" [showIcon]="true" name="data">
-        </p-calendar>
+        <p-calendar dateFormat="dd/mm/yy" [inline]="false" [readonlyInput]="true" [showIcon]="true"
+          name="dataAte" [locale]="locale" [(ngModel)]="filtro.dataAte"></p-calendar>
       </div>
-      -->
+
     </div>
 
     <div class="row">
     <div class="ui-g-12">
       <button pButton type="submit" label="Pesquisar" icon="fa fa-search"></button>
+      <button pButton type="submit" label="Exportar como PDF" class="ui-button-secondary"
+        icon="fa fa-file-pdf-o" style="margin-left: 10px" (click)="abrirRelatorio()"></button>
       <!--
-      <a routerLink="/subcategorias/nova" style="margin: 20px">
-        <i class="fa  fa-file-pdf-o "></i> <span class="hidden-xs  hidden-sm"> Exportar como PDF</span>
-      </a>
       <a routerLink="/subcategorias/nova">
         <i class="fa  fa-file-excel-o"></i> <span class="hidden-xs  hidden-sm"> Exportar como Panilha</span>
       </a>

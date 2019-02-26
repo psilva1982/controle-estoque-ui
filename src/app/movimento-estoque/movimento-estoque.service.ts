@@ -4,10 +4,13 @@ import { Injectable } from '@angular/core';
 import { Movimento } from '../models/Movimento';
 import { environment } from 'src/environments/environment';
 
+import * as moment from 'moment';
+
 export class MovimentoFiltro {
   produto: string;
   tipo: string;
-  data: Date;
+  dataDe: Date;
+  dataAte: Date;
   pagina = 0;
   itensPorPagina = 10;
 }
@@ -32,6 +35,14 @@ export class MovimentoEstoqueService {
 
     if (filtro.produto) {
         parametros = parametros.append('produto', filtro.produto);
+    }
+
+    if (filtro.dataDe) {
+      parametros = parametros.append('data__gte', moment(filtro.dataDe).format('YYYY-MM-DD'));
+    }
+
+    if (filtro.dataAte) {
+      parametros = parametros.append('data__lte', moment(filtro.dataAte).format('YYYY-MM-DD'));
     }
 
     if (filtro.tipo && filtro.tipo !== 'qualquer') {
