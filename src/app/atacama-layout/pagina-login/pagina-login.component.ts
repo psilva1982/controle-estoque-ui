@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
   templateUrl: './pagina-login.component.html',
   styleUrls: ['./pagina-login.component.css'],
   providers: [
-    AuthService,
     ErrorHandlerService
   ]
 })
