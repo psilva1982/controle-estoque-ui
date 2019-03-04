@@ -29,12 +29,10 @@ export class DashboardHomeComponent implements OnInit {
   produtos: number;
   produtosCategorias = {};
 
-  @ViewChild('graficoBarra') graficoBarra: UIChart;
+  // @ViewChild('graficoBarra') graficoBarra: UIChart;
   barraGrafico: any;
-  entradas = [];
-  saidas = [];
 
-  @ViewChild('graficoPizza') graficoPizza: UIChart;
+  // @ViewChild('graficoPizza') graficoPizza: UIChart;
   pizzaGrafico: any;
   pizzaLabel = [];
   pizzaDados = [];
@@ -46,38 +44,38 @@ export class DashboardHomeComponent implements OnInit {
 
   ngOnInit() {
     this.recuperarDados();
-    this.geraGraficoBarra();
-    this.geraGraficoPizza();
+    /*
+    setTimeout(function () {
 
-   setTimeout(function () {
-      this.graficoPizza.refresh();
       this.graficoBarra.refresh();
+      this.graficoPizza.refresh();
 
     }.bind(this), 1);
+    */
   }
 
-  geraGraficoBarra() {
+  geraGraficoBarra(entradas, saidas) {
     this.barraGrafico = {
       labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
       datasets: [
         {
           label: 'Entrada',
-          data: this.entradas
+          data: entradas,
         },
         {
           label: 'Saída',
-          data: this.saidas
+          data: saidas,
         }
       ]
-    }
+    };
   }
 
-  geraGraficoPizza() {
+  geraGraficoPizza(legenda, dados) {
     this.pizzaGrafico = {
-      labels: this.pizzaLabel,
+      labels: legenda,
       datasets: [
         {
-          data: this.pizzaDados,
+          data: dados,
         }]
     };
   }
@@ -102,19 +100,14 @@ export class DashboardHomeComponent implements OnInit {
         this.maiorSaidaProduto = dados.maior_saida_produto;
         this.maiorSaidaQtde = dados.maior_saida_qtde;
 
-        for (const i of dados.entradas) {
-          this.entradas.push(dados.entradas[i]);
-        }
-
-        for (const i of dados.saidas) {
-          this.saidas.push(dados.saidas[i]);
-        }
-
         // tslint:disable-next-line:forin
         for (const i in this.produtosCategorias) {
           this.pizzaLabel.push(i);
           this.pizzaDados.push(this.produtosCategorias[i]);
         }
+
+        this.geraGraficoPizza(this.pizzaLabel, this.pizzaDados);
+        this.geraGraficoBarra(dados.entradas, dados.saidas);
       },
         erro => this.errorHandlerService.handle(erro)
       );
