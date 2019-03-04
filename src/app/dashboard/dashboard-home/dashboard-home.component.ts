@@ -46,18 +46,14 @@ export class DashboardHomeComponent implements OnInit {
 
   ngOnInit() {
     this.recuperarDados();
+    this.geraGraficoBarra();
+    this.geraGraficoPizza();
 
-    setTimeout(function () {
+   setTimeout(function () {
+      this.graficoPizza.refresh();
+      this.graficoBarra.refresh();
 
-      this.geraGraficoBarra();
-      this.geraGraficoPizza();
-
-
-    }.bind(this), 100);
-
-    this.graficoPizza.reinit();
-    this.graficoBarra.reinit();
-
+    }.bind(this), 1);
   }
 
   geraGraficoBarra() {
@@ -106,13 +102,19 @@ export class DashboardHomeComponent implements OnInit {
         this.maiorSaidaProduto = dados.maior_saida_produto;
         this.maiorSaidaQtde = dados.maior_saida_qtde;
 
-        for (let i in this.produtosCategorias) {
+        for (const i of dados.entradas) {
+          this.entradas.push(dados.entradas[i]);
+        }
+
+        for (const i of dados.saidas) {
+          this.saidas.push(dados.saidas[i]);
+        }
+
+        // tslint:disable-next-line:forin
+        for (const i in this.produtosCategorias) {
           this.pizzaLabel.push(i);
           this.pizzaDados.push(this.produtosCategorias[i]);
         }
-
-        this.entradas = dados.entradas;
-        this.saidas = dados.saidas;
       },
         erro => this.errorHandlerService.handle(erro)
       );
