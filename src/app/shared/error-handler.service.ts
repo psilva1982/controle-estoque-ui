@@ -1,11 +1,15 @@
 import { MessageService } from 'primeng/api';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class ErrorHandlerService {
 
-  constructor(private messageService: MessageService) { }
+  constructor(
+    private messageService: MessageService,
+    private router: Router
+  ) { }
 
   handle(errorResponse: any) {
 
@@ -32,7 +36,7 @@ export class ErrorHandlerService {
 
         } else if (errorResponse.error.username) {
           msg = 'Informe o login';
-        
+
         } else if (errorResponse.error.password) {
           msg = 'Informe a senha';
 
@@ -46,6 +50,7 @@ export class ErrorHandlerService {
         erro = true;
 
       } else if (errorResponse.status === 401) {
+        this.router.navigate(['/login']);
         msg = 'Sua sessão expirou. Faça o login novamente.';
         erro = true;
 

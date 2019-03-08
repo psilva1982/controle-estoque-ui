@@ -83,7 +83,6 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
-
   fazerRequisicao(fn: Function): Observable<HttpResponse<Object>> {
 
     if (this.isAccessTokenInvalido()) {
